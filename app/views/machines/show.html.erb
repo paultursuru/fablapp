@@ -1,0 +1,21 @@
+<h1>
+  <%= @machine.name %>
+</h1>
+<h3>
+  <%= @machine.description %>
+</h3>
+<%= calendar number_of_days: 4 do |date| %>
+  <% hour = 10 %>
+  <% 8.times do %>
+    <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+      <p>already booked at this hour <%= 'by you' if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %> </p>
+    <% else %>
+      <%= simple_form_for [@machine, @booking] do |f| %>
+        <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+        <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+        <%= f.submit "reserver de #{hour}h à #{hour + 1}h" %>
+      <% end %>
+    <% end %>
+    <% hour += 1 %>
+  <% end %>
+<% end %>
