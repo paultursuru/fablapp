@@ -1,5 +1,5 @@
 <h1>Machines</h1>
-<h2>Online Machines</h2>
+<h3>Online Machines</h3>
 <div class="machine-cards">
   <% @online_machines.each do |machine| %>
     <div class="machine-card">
@@ -9,7 +9,7 @@
     </div>
   <% end %>
 </div>
-<h2>Previously used machines</h2>
+<h3>Previously used machines</h3>
 <div class="machine-cards">
   <% @my_machines.uniq.each do |my_machine| %>
     <div class="machine-card previously-used">
