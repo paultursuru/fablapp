@@ -1,11 +1,19 @@
-<h1>Machines#index</h1>
-<p>Find me in app/views/machines/index.html.erb</p>
-<h2>all machines</h2>
-<% @machines.each do |machine| %>
-  <%= machine.name %>
-  <%= link_to 'voir', machine_path(machine)  %>
-<% end %>
-<h2>my machines</h2>
-<% @my_machines.each do |my_machine| %>
-  <%= my_machine.name %>
-<% end %>
+<h1>Machines</h1>
+<h2>Online Machines</h2>
+<div class="machine-cards">
+  <% @online_machines.each do |machine| %>
+    <div class="machine-card">
+      <h5><%= machine.name %></h5>
+      <p><%= machine.description %></p>
+      <p><%= link_to 'book this machine', machine_path(machine)  %></p>
+    </div>
+  <% end %>
+</div>
+<h2>Previously used machines</h2>
+<div class="machine-cards">
+  <% @my_machines.uniq.each do |my_machine| %>
+    <div class="machine-card previously-used">
+      <%= my_machine.name %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,30 @@
+<div class="green-side-bar <%= 'signed_in' if user_signed_in? %>">
+  <h1><%= link_to 'IFM-lab', root_path %></h1>
+  <% if user_signed_in? %>
+    <h5><%= link_to 'Book a machine', machines_path %></h5>
+    <div class="machine-list">
+      <% @online_machines.each do |online_machine| %>
+        <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+      <% end %>
+    </div>
+    <% if !current_user.bookings.in_the_future.empty? %>
+      <h5><%= link_to 'Upcoming bookings', bookings_path %></h5>
+      <div class="next-booking">
+        <% @next_bookings.each do |next_booking| %>
+          <div class="upcoming-booking-card">
+            <%= next_booking.machine.name %>
+            <%= next_booking.start_time.strftime('à %Hh00') %>
+            <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+          </div>
+        <% end %>
+      </div>
+      <div class="nav-element">
+        <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="nav-element">
+      <%= link_to 'sign in', new_user_session_path %>
+    </div>
+  <% end %>
+</div>
