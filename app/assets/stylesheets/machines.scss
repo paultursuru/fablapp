@@ -1,3 +1,23 @@
 // Place all the styles related to the Machines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.machine-cards {
+  display: flex;
+  flex-wrap: wrap;
+  .machine-card.previously-used {
+    height: min-content;
+  }
+  .machine-card {
+    height: 150px;
+    width: 250px;
+    margin: 0 40px 20px 0;
+    padding: 0 20px;
+    border-left: solid 4px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    a {
+      width: 100%;
+    }
+  }
+}

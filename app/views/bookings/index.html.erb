@@ -1,2 +1,15 @@
-<h1>Bookings#create</h1>
-<p>Find me in app/views/bookings/create.html.erb</p>
+<h1>All my bookings</h1>
+<% @bookings.each do |booking| %>
+  <div class="booking-card">
+    <div class="booking-times">
+      <%= booking.start_time.strftime('Le %d/%m de %Hh00') %>
+      <%= booking.end_time.strftime('à %Hh00') %>
+    </div>
+    <div class="booking-machine">
+      <h5>
+        <%= booking.machine.name %>
+      </h5>
+    </div>
+    <%= link_to 'cancel this booking', booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
+  </div>
+<% end %>

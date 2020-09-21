@@ -4,18 +4,22 @@
 <h3>
   <%= @machine.description %>
 </h3>
-<%= calendar number_of_days: 4 do |date| %>
+<%= calendar number_of_days: 5 do |date| %>
   <% hour = 10 %>
   <% 8.times do %>
-    <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
-      <p>already booked at this hour <%= 'by you' if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %> </p>
-    <% else %>
-      <%= simple_form_for [@machine, @booking] do |f| %>
-        <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
-        <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
-        <%= f.submit "reserver de #{hour}h à #{hour + 1}h" %>
+    <div class="booking-block">
+      <% if DateTime.now > (date + hour.hours) %>
+        <p>such a long time ago</p>
+      <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+        <p>already booked <%= 'by you' if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %> </p>
+      <% else %>
+        <%= simple_form_for [@machine, @booking] do |f| %>
+          <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+          <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+          <%= f.submit "from #{hour}h to #{hour + 1}h" %>
+        <% end %>
       <% end %>
-    <% end %>
-    <% hour += 1 %>
+      <% hour += 1 %>
+    </div>
   <% end %>
 <% end %>

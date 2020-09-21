@@ -1,9 +1,14 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = current_user.bookings
+    @bookings = current_user.bookings.in_the_future
   end
 
   def create
+    if current_user.bookings.in_the_future.count > 3
+      flash[:alert] = 'already too much bookings'
+      return redirect_to root_path
+    end
+
     booking = Booking.new(booking_params)
     booking.machine_id = params[:machine_id]
     booking.user = current_user
@@ -16,6 +21,10 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    booking = Booking.find(params[:id])
+    booking.destroy
+    redirect_to bookings_path
+    flash[:notice] = 'booking was succesfully cancelled'
   end
 
   private
