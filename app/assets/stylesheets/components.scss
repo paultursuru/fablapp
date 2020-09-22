@@ -5,7 +5,7 @@
     width: 100%;
     max-height: 100vh;
     h1 {
-      padding: 30px 0 0 0;
+      padding: 30px 0 20px 0;
       text-decoration: underline;
       a {
         text-decoration: underline;
@@ -15,35 +15,53 @@
 }
 
 .green-side-bar.signed_in {
-  width: 200px;
+  width: 220px;
   height: 100%;
   background: lightgreen;
   color: black;
   position: absolute;
-  padding: 30px 5px;
+  padding: 30px 10px;
+  border-radius: 0 50px 50px 0;
+  box-shadow: 0 0 10px lightgreen;
+  .upcoming-booking-card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 0px 3px #6bd96b;
+    margin: 5px 0 10px 0;
+    background: linear-gradient(0.25turn, lightgreen, #6bd96b);
+    border-radius: 0 5px 5px 0;
+  }
   .machine-list, .upcoming-booking-card {
-    padding: 0 0 10px 20px;
+    padding: 0 10px 0 20px;
     p {
       margin: 0;
     }
   }
   h1 {
     text-decoration: underline;
+    padding: 0 0 20px 0;
   }
-  a, .next-booking {
+  .next-booking {
+    color: black;
+    width: 100%;
+  }
+  a {
     color: black;
     width: max-content;
   }
 }
-.notice, .alert {
-  position: fixed;
-  padding: 4px 10px;
-  top: 5px;
-  left: 250px;
-}
-.notice {
-  background: beige;
-}
-.alert {
-  background: lightpink;
-}
+// TODO
+// .notice, .alert {
+//   position: fixed;
+//   padding: 4px 10px;
+//   top: 5px;
+//   left: 250px;
+// }
+// .notice {
+//   background: beige;
+// }
+// .alert {
+//   background: lightpink;
+// }

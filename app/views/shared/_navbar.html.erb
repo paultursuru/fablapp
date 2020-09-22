@@ -12,19 +12,21 @@
       <div class="next-booking">
         <% @next_bookings.each do |next_booking| %>
           <div class="upcoming-booking-card">
-            <%= next_booking.machine.name %>
-            <%= next_booking.start_time.strftime('à %Hh00') %>
+            <div class="upcoming-name-date">
+              <p><%= next_booking.machine.name %></p>
+              <p>in <%= distance_of_time_in_words(DateTime.now, next_booking.start_time) %></p>
+            </div>
             <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
           </div>
         <% end %>
       </div>
       <div class="nav-element">
-        <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+        <h6><%= link_to 'sign out', destroy_user_session_path, method: :delete %></h6>
       </div>
     <% end %>
   <% else %>
     <div class="nav-element">
-      <%= link_to 'sign in', new_user_session_path %>
+      <h6><%= link_to 'sign in', new_user_session_path %></h6>
     </div>
   <% end %>
 </div>
