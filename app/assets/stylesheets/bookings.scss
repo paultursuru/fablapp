@@ -13,6 +13,9 @@
 .booking-cards {
   display: flex;
   flex-wrap: wrap;
+  .booking-card.no-booking-card {
+    justify-content: center;
+  }
   .booking-card {
     height: 120px;
     width: 300px;

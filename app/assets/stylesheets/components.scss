@@ -14,16 +14,27 @@
   }
 }
 
+/* Feuille de style intégrée #1 | http://localhost:3000/admin/machines */
+
+.alert.alert-dismissible {
+  position: fixed;
+  right: 50px;
+  top: 30px;
+}
+
 
 .green-side-bar {
   width: 220px;
   height: 100%;
   background: lightgreen;
   color: black;
-  position: absolute;
+  position: fixed;
   padding: 30px 10px;
   border-radius: 0 50px 50px 0;
   box-shadow: 0 0 10px lightgreen;
+  .offline-machine a {
+    color: #00000082;
+  }
   .upcoming-booking-card {
     width: 100%;
     display: flex;

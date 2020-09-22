@@ -4,9 +4,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    if current_user.bookings.in_the_future.count > 2
-      flash[:alert] = 'already too much bookings'
-      return redirect_to root_path
+    unless current_user.admin?
+      if current_user.bookings.in_the_future.count > 2
+        flash[:alert] = 'already too much bookings'
+        return redirect_to root_path
+      end
     end
 
     booking = Booking.new(booking_params)

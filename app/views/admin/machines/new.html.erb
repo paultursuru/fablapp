@@ -1,0 +1,9 @@
+<h1>Create a new machine</h1>
+
+<%= simple_form_for @machine, url: admin_machines_path do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
+  <%= f.submit 'add' %>
+<% end %>
+

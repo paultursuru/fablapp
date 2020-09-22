@@ -1,6 +1,5 @@
 class MachinesController < ApplicationController
   def index
-    @machines = Machine.all
     @my_machines = current_user.bookings.map(&:machine)
   end
 
