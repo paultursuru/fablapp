@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'pages/dashboard'
-  root 'pages#dashboard'
+  root 'machines#index'
   devise_for :users
   resources :machines, only: [:index, :show] do
     resources :bookings, only: [:create]

@@ -2,11 +2,7 @@
   <% if user_signed_in? %>
     <% if current_user.admin? %>
       <h1><%= link_to 'IFM-lab', admin_machines_path %></h1>
-      <h5>
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          Upcoming bookings
-        </a>
-      </h5>
+      <h5><%= link_to 'Upcoming bookings', admin_bookings_path%> </h5>
       <h5><%= link_to 'Add a new machine', new_admin_machine_path %></h5>
       <h5><%= link_to 'Machines', admin_machines_path %></h5>
       <div class="machine-list">
