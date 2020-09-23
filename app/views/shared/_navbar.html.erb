@@ -6,32 +6,40 @@
       <h5><%= link_to 'Add a new machine', new_admin_machine_path %></h5>
       <h5><%= link_to 'Machines', admin_machines_path %></h5>
       <div class="machine-list">
-        <% @online_machines.each do |online_machine| %>
-          <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+        <% unless @online_machines.empty? %>
+          <% @online_machines.each do |online_machine| %>
+            <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+          <% end %>
         <% end %>
-        <% @offline_machines.each do |off_machine| %>
-          <p class="offline-machine"><%= link_to off_machine.name, machine_path(off_machine) %></p>
+        <% unless @offline_machines.empty? %>
+          <% @offline_machines.each do |off_machine| %>
+            <p class="offline-machine"><%= link_to off_machine.name, machine_path(off_machine) %></p>
+          <% end %>
         <% end %>
       </div>
     <% else %>
       <h1><%= link_to 'IFM-lab', admin_machines_path %></h1>
       <h5><%= link_to 'Book a machine', machines_path %></h5>
       <div class="machine-list">
-        <% @online_machines.each do |online_machine| %>
-          <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+        <% unless @online_machines.empty? %>
+          <% @online_machines.each do |online_machine| %>
+            <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+          <% end %>
         <% end %>
       </div>
       <% if !current_user.bookings.in_the_future.empty? %>
         <h5><%= link_to 'Upcoming bookings', bookings_path %></h5>
         <div class="next-booking">
-          <% @next_bookings.each do |next_booking| %>
-            <div class="upcoming-booking-card">
-              <div class="upcoming-name-date">
-                <p><%= next_booking.machine.name %></p>
-                <p>in <%= distance_of_time_in_words(DateTime.now, next_booking.start_time) %></p>
+          <% unless @next_bookings.empty? %>
+            <% @next_bookings.each do |next_booking| %>
+              <div class="upcoming-booking-card">
+                <div class="upcoming-name-date">
+                  <p><%= next_booking.machine.name %></p>
+                  <p>in <%= distance_of_time_in_words(DateTime.now, next_booking.start_time) %></p>
+                </div>
+                <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
               </div>
-              <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
-            </div>
+            <% end %>
           <% end %>
         </div>
       <% end %>
