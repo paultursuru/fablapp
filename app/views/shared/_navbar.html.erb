@@ -37,6 +37,7 @@
       <% end %>
     <% end %>
     <div class="nav-element">
+      <h6><%= link_to 'my account', edit_user_registration_path %> </h6>
       <h6><%= link_to 'sign out', destroy_user_session_path, method: :delete %></h6>
     </div>
   <% else %>
