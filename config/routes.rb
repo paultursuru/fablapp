@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'bookings#index'
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations' , invitations: 'users/invitations'}
   get 'users/sign_up', to: redirect('/users/sign_in', status: 302)
   resources :machines, only: [:index, :show] do
     resources :bookings, only: [:create]
