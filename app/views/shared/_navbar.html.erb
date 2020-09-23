@@ -6,12 +6,12 @@
       <h5><%= link_to 'Add a new machine', new_admin_machine_path %></h5>
       <h5><%= link_to 'Machines', admin_machines_path %></h5>
       <div class="machine-list">
-        <% unless @online_machines.empty? %>
+        <% unless @online_machines.nil? %>
           <% @online_machines.each do |online_machine| %>
             <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
           <% end %>
         <% end %>
-        <% unless @offline_machines.empty? %>
+        <% unless @offline_machines.nil? %>
           <% @offline_machines.each do |off_machine| %>
             <p class="offline-machine"><%= link_to off_machine.name, machine_path(off_machine) %></p>
           <% end %>
@@ -21,13 +21,13 @@
       <h1><%= link_to 'IFM-lab', admin_machines_path %></h1>
       <h5><%= link_to 'Book a machine', machines_path %></h5>
       <div class="machine-list">
-        <% unless @online_machines.empty? %>
+        <% unless @online_machines.nil? %>
           <% @online_machines.each do |online_machine| %>
             <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
           <% end %>
         <% end %>
       </div>
-      <% if !current_user.bookings.in_the_future.empty? %>
+      <% unless current_user.bookings.in_the_future.nil? %>
         <h5><%= link_to 'Upcoming bookings', bookings_path %></h5>
         <div class="next-booking">
           <% unless @next_bookings.nil? %>
