@@ -1,7 +1,7 @@
 <h1>Upcoming bookings</h1>
 <h3>Today</h3>
 <div class="booking-cards">
-  <% unless @today_bookings.empty? %>
+  <% unless @today_bookings.nil? %>
     <% @today_bookings.each do |booking| %>
       <div class="booking-card">
         <div class="booking-times">
@@ -31,7 +31,7 @@
 </div>
 <h3>Next days</h3>
 <div class="booking-cards">
-  <% unless @tomorrow_bookings.empty? %>
+  <% unless @tomorrow_bookings.nil? %>
     <% @tomorrow_bookings.each do |booking| %>
       <div class="booking-card">
         <div class="booking-times">
