@@ -8,6 +8,7 @@
     height: min-content;
   }
   .machine-card {
+    position: relative;
     height: 120px;
     width: 300px;
     margin: 20px 40px 20px 0;
@@ -24,5 +25,69 @@
       width: 100%;
       margin: 0;
     }
+    .machine-description {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .edit-machine {
+      position: absolute;
+      right: 10px;
+      .form-group.hidden.machine_visible {
+        margin: 0;
+      }
+      .on-off-btn {
+        border: none;
+        background: none;
+        margin: 0 20px;
+      }
+    }
   }
 }
+
+
+.machine-card.add-card {
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  .add-machine {
+    text-align: center;
+    font-size: 45px;
+    height: 100%;
+    padding: 25px 0;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.add-edit-btn {
+  background: lightgreen;
+  color: #157015;
+  box-shadow: 0 0 10px #9cf69c;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+  line-height: normal;
+  margin: 0 25px 0 0;
+  &:hover {
+    color: #044204;
+    box-shadow: 0 0 16px #4bbe4b;
+    transition: all 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+  }
+}
+.add-edit-btn.destroy-btn {
+  background: coral;
+  color: #782507;
+  box-shadow: 0 0 10px coral;
+  &:hover {
+    text-decoration: none;
+    color: #431302;
+    box-shadow: 0 0 10px #c63905;
+  }
+}
+
+
+

@@ -16,9 +16,7 @@
       <div class="middle-body">
         <%= yield %>
       </div>
-      <!-- TODO  -->
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render 'shared/flashes' %>
     </div>
   </body>
 </html>

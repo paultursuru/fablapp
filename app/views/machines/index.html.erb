@@ -4,7 +4,7 @@
   <% @online_machines.each do |machine| %>
     <div class="machine-card">
       <h5><%= machine.name %></h5>
-      <p><%= machine.description %></p>
+      <p class="machine-description"><%= machine.description %></p>
       <p><%= link_to 'book this machine', machine_path(machine)  %></p>
     </div>
   <% end %>

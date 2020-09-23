@@ -1,9 +1,9 @@
 <h1>
   <%= @machine.name %>
 </h1>
-<h3>
+<p>
   <%= @machine.description %>
-</h3>
+</p>
 <%= calendar number_of_days: 5 do |date| %>
   <% hour = 10 %>
   <% 8.times do %>
