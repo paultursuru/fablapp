@@ -31,21 +31,23 @@
 </div>
 <h3>Next days</h3>
 <div class="booking-cards">
-  <% @tomorrow_bookings.each do |booking| %>
-    <div class="booking-card">
-      <div class="booking-times">
-        <p>
-          <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-          <%= booking.end_time.strftime('- %Hh00') %>
-        </p>
+  <% unless @tomorrow_bookings.empty? %>
+    <% @tomorrow_bookings.each do |booking| %>
+      <div class="booking-card">
+        <div class="booking-times">
+          <p>
+            <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
+            <%= booking.end_time.strftime('- %Hh00') %>
+          </p>
+        </div>
+        <div class="booking-machine">
+          <h5>
+            <%= booking.machine.name %>
+          </h5>
+          <h6>booked by <%= booking.user.email %> </h6>
+        </div>
+        <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
       </div>
-      <div class="booking-machine">
-        <h5>
-          <%= booking.machine.name %>
-        </h5>
-        <h6>booked by <%= booking.user.email %> </h6>
-      </div>
-      <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
-    </div>
+    <% end %>
   <% end %>
 </div>
