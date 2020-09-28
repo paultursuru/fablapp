@@ -1,0 +1,17 @@
+<h1>All students <%= "(#{@users_count})" if @users_count %></h1>
+<div class="machine-cards">
+  <% unless @users.empty? %>
+    <% @users.each do |user| %>
+      <div class="machine-card">
+        <h5><%= user.email %></h5>
+        <h6>Last machine used :</h6>
+        <p><%= user.bookings.last.machine.name %> on <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
+        <p class="machine-description">
+          <%= link_to 'remove user', admin_destroy_user_path(user),
+          method: :delete,
+          data: {confirm: 'are you sure to remove this account?'}  %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -22,6 +22,10 @@ width: 66%;
 border: none;
 border-radius: 0 50px 50px 0;
 }
+.card.card-body.book-machine-card {
+  padding: 0;
+  width: max-content;
+}
 #collapseExample {
 background: transparent;
 }
@@ -36,6 +40,7 @@ background: white;
   position: fixed;
   right: 50px;
   top: 30px;
+  width: 400px;
 }
 
 

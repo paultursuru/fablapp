@@ -1,12 +1,12 @@
 <h1>
-  <%= @machine.name %>
+  <%= @machine.name %> <%= link_to '🖍', edit_admin_machine_path(@machine) if current_user.admin? %>
 </h1>
 <p>
   <%= @machine.description %>
 </p>
-<%= calendar number_of_days: 5 do |date| %>
+<%= calendar number_of_days: 4 do |date| %>
   <% hour = 10 %>
-  <% 8.times do %>
+  <% 5.times do %>
     <div class="booking-block">
       <% if DateTime.now > (date + hour.hours) %>
         <p>such a long time ago</p>
@@ -15,11 +15,11 @@
       <% else %>
         <%= simple_form_for [@machine, @booking] do |f| %>
           <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
-          <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
-          <%= f.submit "from #{hour}h to #{hour + 1}h" %>
+          <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 2).hours} %>
+          <%= f.submit "from #{hour}h to #{hour + 2}h" %>
         <% end %>
       <% end %>
-      <% hour += 1 %>
+      <% hour += 2 %>
     </div>
   <% end %>
 <% end %>

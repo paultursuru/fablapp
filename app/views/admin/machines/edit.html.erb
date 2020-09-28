@@ -1,5 +1,4 @@
-<h1>Edit this machine</h1>
-
+<h1><%= @machine.name %>'s edit board </h1>
 <%= simple_form_for @machine, url: admin_machine_path(@machine) do |f| %>
   <%= f.input :name %>
   <%= f.input :description, as: :text %>

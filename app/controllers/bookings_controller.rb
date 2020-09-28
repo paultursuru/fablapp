@@ -14,6 +14,10 @@ class BookingsController < ApplicationController
     booking = Booking.new(booking_params)
     booking.machine_id = params[:machine_id]
     booking.user = current_user
+    unless current_user.bookings.where(start_time: booking.start_time).empty?
+      flash[:alert] = "Looks like you already booked #{current_user.bookings.where(start_time: booking.start_time).last.machine.name} that day at #{booking.start_time.strftime("%H:00")}.. You can't book two machines at the same time."
+      return redirect_to root_path
+    end
     if booking.save!
       flash[:notice] = 'booking created'
     else
