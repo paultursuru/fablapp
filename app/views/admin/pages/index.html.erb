@@ -4,8 +4,10 @@
     <% @users.each do |user| %>
       <div class="machine-card">
         <h5><%= user.email %></h5>
-        <h6>Last machine used :</h6>
-        <p><%= user.bookings.last.machine.name %> on <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
+        <% unless user.bookings.empty? %>
+          <h6>Last machine used :</h6>
+          <p><%= user.bookings.last.machine.name %> on <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
+        <% end %>
         <p class="machine-description">
           <%= link_to 'remove user', admin_destroy_user_path(user),
           method: :delete,
