@@ -64,7 +64,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'serene-spire-12428.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtauth.online.net",
+    address: "smtpauth.online.net",
     port: 587,
     domain: ENV["MY_DOMAIN"],
     authentication: "plain",
