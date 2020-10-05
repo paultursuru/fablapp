@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     delete "users/:id", to: "pages#destroy", as: 'destroy_user'
+    get 'new_user', to: 'pages#new_user', as: 'new_user'
+    post 'add_user', to: 'pages#add_user', as: 'add_user'
+    post 'reboot_password', to: 'pages#reboot_password', as: 'reboot_password'
     get 'users', to: 'pages#index', as: 'users'
     resources :machines do
       resources :bookings, only: [:create]

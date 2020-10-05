@@ -1,23 +1,26 @@
-<h1>Machines</h1>
-<h3>Online Machines</h3>
-<div class="machine-cards">
-  <% unless @online_machines.empty? %>
-    <% @online_machines.each do |machine| %>
-      <div class="machine-card">
-        <h5><%= machine.name %></h5>
-        <p class="machine-description"><%= machine.description %></p>
-        <p><%= link_to 'book this machine', machine_path(machine)  %></p>
-      </div>
+<div class="main-page-name"><h1 class="ifm-paris">Machines</h1></div>
+
+<div class="main-page-content">
+  <h3>Online Machines</h3>
+  <div class="machine-cards">
+    <% unless @online_machines.empty? %>
+      <% @online_machines.each do |machine| %>
+        <div class="machine-card">
+          <h5><%= machine.name %></h5>
+          <p class="machine-description"><%= machine.description %></p>
+          <p><%= link_to 'book this machine', machine_path(machine)  %></p>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-<h3>Previously used machines</h3>
-<div class="machine-cards">
-  <% unless @my_machines.empty? %>
-    <% @my_machines.uniq.each do |my_machine| %>
-      <div class="machine-card previously-used">
-        <%= my_machine.name %>
-      </div>
+  </div>
+  <h3>Previously used machines</h3>
+  <div class="machine-cards">
+    <% unless @my_machines.empty? %>
+      <% @my_machines.uniq.each do |my_machine| %>
+        <div class="machine-card previously-used">
+          <%= my_machine.name %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

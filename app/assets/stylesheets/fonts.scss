@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'fakt-pro';
+  src: font-url('Fakt-Pro-Normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'ifm-paris';
+  src: font-url('IFMParis-Regular.woff2') format('woff2');
+}
+
+
+.fakt-pro {
+  font-family: 'fakt-pro';
+}
+.ifm-paris {
+  font-family: 'ifm-paris';
+}
+h1 {
+  font-family: 'ifm-paris';
+}
+body, h2, h3, h4, h5, h6, p {
+  font-family: 'fakt-pro', 'Helvetica';
+}

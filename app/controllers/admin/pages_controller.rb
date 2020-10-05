@@ -22,6 +22,30 @@ class Admin::PagesController < ApplicationController
     @users_count = @users.count
   end
 
+  def new_user; end
+
+  def add_user
+    email = params[:email]
+    student = User.new(email: email, password: '123456')
+    if student.save!
+      redirect_to admin_users_path, notice: "#{email}"
+    else
+      redirect_to admin_new_user_path, alert: "didn't work"
+    end
+  end
+
+  def reboot_password
+    email = params[:email]
+    user = User.where(email: email).first
+    user.password = "123456"
+    redirect_to admin_users_path
+    if user.save!
+      flash[:notice] = "#{email}'s password was rebooted"
+    else
+      flash[:alert] = "didn't work"
+    end
+  end
+
   def destroy
     user = User.find(params[:id])
     user.destroy

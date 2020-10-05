@@ -1,0 +1,13 @@
+<div class="main-page-name">
+  <h1 class="ifm-paris">
+    New Account
+  </h1>
+</div>
+
+<div class="main-page-content">
+  <%= form_with(url: admin_add_user_path, method: "post") do %>
+    <%= label_tag(:email, "Student's email") %>
+    <%= text_field_tag(:email) %>
+    <%= submit_tag("Create Account") %>
+  <% end %>
+</div>

@@ -1,25 +1,38 @@
-<h1>
-  <%= @machine.name %> <%= link_to '🖍', edit_admin_machine_path(@machine) if current_user.admin? %>
-</h1>
-<p>
-  <%= @machine.description %>
-</p>
-<%= calendar number_of_days: 4 do |date| %>
-  <% hour = 10 %>
-  <% 5.times do %>
-    <div class="booking-block">
-      <% if DateTime.now > (date + hour.hours) %>
-        <p>such a long time ago</p>
-      <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
-        <p>already booked <%= 'by you' if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %> </p>
-      <% else %>
-        <%= simple_form_for [@machine, @booking] do |f| %>
-          <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
-          <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 2).hours} %>
-          <%= f.submit "from #{hour}h to #{hour + 2}h" %>
-        <% end %>
-      <% end %>
-      <% hour += 2 %>
-    </div>
+<div class="main-page-name">
+  <h1 class="ifm-paris">
+    <%= @machine.name %>
+  </h1>
+  <% if current_user.admin? %>
+    <%= link_to edit_admin_machine_path(@machine) do  %>
+      <div class="machine-card add-card">
+        <p class="add-edit-logo">🖍</p>
+        <p>edit this machine</p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+<div class="main-page-content">
+  <p>
+    <%= @machine.description %>
+  </p>
+  <%= calendar number_of_days: 4 do |date| %>
+    <% hour = 10 %>
+    <% 5.times do %>
+      <div class="booking-block">
+        <% if DateTime.now > (date + hour.hours) %>
+          <p>such a long time ago</p>
+        <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+          <p>already booked <%= 'by you' if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %> </p>
+        <% else %>
+          <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+            <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 2).hours} %>
+            <%= f.submit "from #{hour}h to #{hour + 2}h" %>
+          <% end %>
+        <% end %>
+        <% hour += 2 %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

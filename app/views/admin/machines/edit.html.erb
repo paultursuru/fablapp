@@ -1,9 +1,13 @@
-<h1><%= @machine.name %>'s edit board </h1>
-<%= simple_form_for @machine, url: admin_machine_path(@machine) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
-  <%= f.submit 'save changes', class: 'add-edit-btn' %>
-  <%= link_to '☠ destroy this machine ☠', admin_machine_path(@machine), data: {confirm: 'You are about to remove this machine from database. Are you sure ?'}, method: :delete, class: 'add-edit-btn destroy-btn' %>
-<% end %>
+<div class="main-page-name">
+  <h1 class="ifm-paris"><%= @machine.name %>'s edit board</h1>
+</div>
 
+<div class="main-page-content machine-forms">
+  <%= simple_form_for @machine, url: admin_machine_path(@machine) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
+    <%= f.submit 'save changes', class: 'add-edit-btn' %>
+    <%= link_to '☠ destroy this machine ☠', admin_machine_path(@machine), data: {confirm: 'You are about to remove this machine from database. Are you sure ?'}, method: :delete, class: 'add-edit-btn destroy-btn' %>
+  <% end %>
+</div>

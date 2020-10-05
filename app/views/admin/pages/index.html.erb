@@ -1,19 +1,36 @@
-<h1>All students <%= "(#{@users_count})" if @users_count %></h1>
-<div class="machine-cards">
-  <% unless @users.empty? %>
-    <% @users.each do |user| %>
-      <div class="machine-card">
-        <h5><%= user.email %></h5>
-        <% unless user.bookings.empty? %>
-          <h6>Last machine used :</h6>
-          <p><%= user.bookings.last.machine.name %> on <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
-        <% end %>
-        <p class="machine-description">
-          <%= link_to 'remove user', admin_destroy_user_path(user),
-          method: :delete,
-          data: {confirm: 'are you sure to remove this account?'}  %>
-        </p>
-      </div>
-    <% end %>
+<div class="main-page-name">
+  <h1 class="ifm-paris">
+    All students <%= "(#{@users_count})" if @users_count %>
+  </h1>
+  <%= link_to admin_new_user_path do  %>
+    <div class="machine-card add-card">
+      <%#= link_to '➕', admin_new_user_path, class: 'add-machine' %>
+      <p class="add-edit-logo">➕</p>
+      <p>create a new account</p>
+    </div>
   <% end %>
+</div>
+
+<div class="main-page-content">
+  <div class="machine-cards">
+    <% unless @users.empty? %>
+      <% @users.each do |user| %>
+        <div class="machine-card">
+          <h5><%= user.email %></h5>
+          <% unless user.bookings.empty? %>
+            <h6>Last machine used :</h6>
+            <p><%= user.bookings.last.machine.name %> on <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
+          <% end %>
+          <p class="machine-description">
+            <%= link_to 'reboot password', admin_reboot_password_path(email: user.email),
+            method: :post,
+            data: {confirm: "You are about to reboot this student's password?"}  %>
+            <%= link_to 'remove user', admin_destroy_user_path(user),
+            method: :delete,
+            data: {confirm: 'are you sure to remove this account?'}  %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,8 +1,39 @@
-<h1>Upcoming bookings</h1>
-<h3>Today</h3>
-<div class="booking-cards">
-  <% unless @admin_today_bookings.empty? %>
-    <% @admin_today_bookings.each do |booking| %>
+<div class="main-page-name"><h1 class="ifm-paris">Upcoming bookings</h1></div>
+
+<div class="main-page-content">
+  <h3>Today</h3>
+  <div class="booking-cards">
+    <% unless @admin_today_bookings.empty? %>
+      <% @admin_today_bookings.each do |booking| %>
+        <div class="booking-card">
+          <div class="booking-times">
+            <p>
+              <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
+              <%= booking.end_time.strftime('- %Hh00') %>
+            </p>
+          </div>
+          <div class="booking-machine">
+            <h5>
+              <%= booking.machine.name %>
+            </h5>
+            <h6>booked by <%= booking.user.email %> </h6>
+          </div>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="booking-card no-booking-card">
+        <div class="booking-machine">
+          <h5>
+            No booking yet !
+          </h5>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h3>Next days</h3>
+  <div class="booking-cards">
+    <% @admin_tomorrow_bookings.each do |booking| %>
       <div class="booking-card">
         <div class="booking-times">
           <p>
@@ -19,33 +50,5 @@
         <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
       </div>
     <% end %>
-  <% else %>
-    <div class="booking-card no-booking-card">
-      <div class="booking-machine">
-        <h5>
-          No booking yet !
-        </h5>
-      </div>
-    </div>
-  <% end %>
-</div>
-<h3>Next days</h3>
-<div class="booking-cards">
-  <% @admin_tomorrow_bookings.each do |booking| %>
-    <div class="booking-card">
-      <div class="booking-times">
-        <p>
-          <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-          <%= booking.end_time.strftime('- %Hh00') %>
-        </p>
-      </div>
-      <div class="booking-machine">
-        <h5>
-          <%= booking.machine.name %>
-        </h5>
-        <h6>booked by <%= booking.user.email %> </h6>
-      </div>
-      <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
-    </div>
-  <% end %>
+  </div>
 </div>
