@@ -2,6 +2,9 @@
   <h1 class="ifm-paris">
     <%= @machine.name %>
   </h1>
+  <p class="machine-description">
+    <%= @machine.description %>
+  </p>
   <% if current_user.admin? %>
     <%= link_to edit_admin_machine_path(@machine) do  %>
       <div class="machine-card add-card">
@@ -13,9 +16,9 @@
 </div>
 
 <div class="main-page-content">
-  <p>
-    <%= @machine.description %>
-  </p>
+  <!-- <p>
+    <%#= @machine.description %>
+  </p> -->
   <%= calendar number_of_days: 4 do |date| %>
     <% hour = 10 # opening hour %>
     <% if date.wday == 0 # if it's sunday %>

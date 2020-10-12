@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
         flash[:alert] = 'already too much bookings'
         return redirect_to root_path
       end
-      if booking.start_time + 1.hours != booking.end_time || booking.start_time > (DateTime.now + 72.hours)
+      if booking.start_time + 1.hours != booking.end_time || booking.start_time > (DateTime.now + 74.hours)
         flash[:alert] = 'Nice try.'
         return redirect_to root_path
       end
@@ -37,6 +37,7 @@ class BookingsController < ApplicationController
 
   def destroy
     booking = Booking.find(params[:id])
+    return redirect_to root_path unless booking.user != current_user || !current_user.admin?
     booking.destroy
     redirect_to bookings_path
     flash[:notice] = 'booking was succesfully cancelled'

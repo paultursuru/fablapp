@@ -7,6 +7,43 @@
   }
 }
 
+
+
+/* Feuille de style intégrée #1 | http://localhost:3000/machines/2 */
+
+.ifm-paris {
+}
+
+/* application.debug-50172d30caa0e8264177a98699dfad9b95974f4948b43e6006b3ece4a3ae70aa.css | http://localhost:3000/assets/application.debug-50172d30caa0e8264177a98699dfad9b95974f4948b43e6006b3ece4a3ae70aa.css */
+
+.whole-body .middle-body .main-page-name h1 {
+  /* padding: 30px 20px 20px 0; */
+  /* width: 200px; */
+  width: max-content;
+  margin: 0 20px 0 0;
+  border-right: solid 1px;
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whole-body .middle-body .main-page-name {
+  /* padding: 0 0 0 50px; */
+  padding: 0;
+}
+
+.whole-body .middle-body .main-page-name .machine-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+
+
+
 .whole-body {
   display: flex;
   .middle-body {
@@ -17,13 +54,32 @@
     .main-page-name {
       width: 100%;
       border-bottom: solid 1px black;
-      padding: 0 0 0 50px;
+      padding: 0;
       height: 131px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      // justify-content: space-between;
       position: fixed;
       background: white;
+      .machine-description {
+        font-size: 11px;
+        padding: 0 20px 0 0;
+        width: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 20px;
+      }
+      h1 {
+        width: max-content;
+        margin: 0 20px 0 0;
+        border-right: solid 1px;
+        height: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       a {
         height: 100%;
         color: black;
@@ -38,7 +94,8 @@
       }
     }
     .main-page-content {
-      padding: 50px 0 0 50px;
+      padding: 0;
+      // padding: 50px 20px 20px 50px;
       margin-top: 131px;
     }
     .machine-forms {
