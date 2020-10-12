@@ -1,8 +1,17 @@
-<div class="main-page-name"><h1 class="ifm-paris">Upcoming bookings</h1></div>
+<div class="main-page-name">
+  <h1 class="ifm-paris">Bookings</h1>
+  <h1 class="ifm-paris middle-top-bar">Upcoming bookings <%= ": #{@admin_bookings_count}" if @admin_bookings_count %></h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
+</div>
 
 <div class="main-page-content">
-  <h3>Today</h3>
-  <div class="booking-cards">
+  <h3 class="margin-devise">Today</h3>
+  <div class="booking-cards margin-devise">
     <% unless @admin_today_bookings.empty? %>
       <% @admin_today_bookings.each do |booking| %>
         <div class="booking-card">
@@ -31,8 +40,8 @@
       </div>
     <% end %>
   </div>
-  <h3>Next days</h3>
-  <div class="booking-cards">
+  <h3 class="margin-devise">Next days</h3>
+  <div class="booking-cards margin-devise">
     <% @admin_tomorrow_bookings.each do |booking| %>
       <div class="booking-card">
         <div class="booking-times">

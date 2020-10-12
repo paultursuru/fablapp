@@ -7,11 +7,17 @@
   </p>
   <% if current_user.admin? %>
     <%= link_to edit_admin_machine_path(@machine) do  %>
-      <div class="machine-card add-card">
+      <div class="machine-card add-card edit-or-create">
         <p class="add-edit-logo">🖍</p>
         <p>edit this machine</p>
       </div>
     <% end %>
+  <% end %>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
   <% end %>
 </div>
 

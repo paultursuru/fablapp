@@ -30,6 +30,13 @@
       overflow: hidden;
       white-space: nowrap;
     }
+    .machine-actions {
+      display: flex;
+      justify-content: space-between;
+      a {
+        width: max-content;
+      }
+    }
     .edit-machine {
       position: absolute;
       right: 10px;
@@ -41,6 +48,9 @@
         background: none;
         margin: 0 20px;
       }
+    }
+    .last-machine h6 {
+      margin: 0;
     }
   }
 }

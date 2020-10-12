@@ -1,16 +1,27 @@
 <div class="main-page-name">
   <h1 class="ifm-paris">Machines</h1>
+  <h1 class="ifm-paris middle-top-bar">
+    <%= "#{@online_machines.count if @online_machines} online" %>
+    <%= "and" if @online_machines && @offline_machines %>
+    <%= "#{@offline_machines.count if @offline_machines} offline" %>
+  </h1>
   <%= link_to new_admin_machine_path do  %>
-    <div class="machine-card add-card">
+    <div class="machine-card add-card edit-or-create">
       <p class="add-edit-logo">➕</p>
       <p>create a new machine</p>
+    </div>
+  <% end %>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
     </div>
   <% end %>
 </div>
 
 <div class="main-page-content">
-  <h3 class="fakt-pro">Online</h3>
-  <div class="machine-cards">
+  <h3 class="fakt-pro margin-devise">Online</h3>
+  <div class="machine-cards margin-devise">
     <% unless @online_machines.empty? %>
       <% @online_machines.each do |machine| %>
         <div class="machine-card">
@@ -29,8 +40,8 @@
     <% end %>
   </div>
 
-  <h3>Offline</h3>
-  <div class="machine-cards">
+  <h3 class="fakt-pro margin-devise">Offline</h3>
+  <div class="machine-cards margin-devise">
     <% unless @offline_machines.empty? %>
       <% @offline_machines.each do |machine| %>
         <div class="machine-card">

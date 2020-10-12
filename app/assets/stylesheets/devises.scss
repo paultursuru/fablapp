@@ -3,12 +3,15 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .margin-devise {
   margin: 0;
-  padding: 0;
+  padding: 0 20px;
   width: max-content;
+}
+h3.margin-devise {
+padding-top: 20px;
 }
 #new_user {
   width: 300px;
-  padding: 0 0 20px 0;
+  padding: 20px 0 0 20px;
   .btn.login-btn {
     box-shadow: none;
     border: solid 2px black;

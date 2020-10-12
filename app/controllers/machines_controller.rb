@@ -5,6 +5,7 @@ class MachinesController < ApplicationController
 
   def show
     @machine = Machine.find(params[:id])
-    @booking = Booking.new
+      return redirect_to machines_path if !@machine.visible && !current_user.admin?
+      @booking = Booking.new
   end
 end
