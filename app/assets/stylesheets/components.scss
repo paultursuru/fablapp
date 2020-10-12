@@ -6,6 +6,7 @@
     color: black;
   }
 }
+
 .whole-body {
   display: flex;
   .middle-body {
@@ -21,6 +22,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: fixed;
+      background: white;
       a {
         height: 100%;
         color: black;
@@ -36,6 +39,7 @@
     }
     .main-page-content {
       padding: 50px 0 0 50px;
+      margin-top: 131px;
     }
     .machine-forms {
       #new_machine, .simple_form.edit_machine {
@@ -163,6 +167,8 @@ background: white;
 }
 
 
+
+
 @media (max-width: 800px) {
   .green-side-bar {
     width: 100px;
@@ -180,6 +186,8 @@ background: white;
   .whole-body .middle-body .main-page-name {
     padding-left: 30px;
     height: 87px;
+    position: fixed;
+    background: white;
     .ifm-paris {
       font-size: 28px;
     }
@@ -187,6 +195,7 @@ background: white;
 
   .whole-body .middle-body .main-page-content {
     padding: 30px 0 0 30px;
+    margin-top: 87px;
     h3 {
       font-size: 24px;
     }

@@ -19,6 +19,20 @@ class ApplicationController < ActionController::Base
     @offline_machines = Machine.offline.order(name: :asc) if current_user.admin?
   end
 
+  def on_that_day(this_booking)
+    this_user = this_booking.user
+    user_bookings = this_user.bookings.where(machine_id: this_booking.machine_id)
+    # counting bookings this_day on this_machine in the 11 hours before
+    # and 11 hours after (ajusted to this place's opening hours)
+    bookings_count = 0
+    i = -11
+    22.times do
+      bookings_count += user_bookings.where(start_time: (this_booking.start_time + i.hours)).count
+      i += 1
+    end
+    bookings_count < 2 # will return true of false
+  end
+
   private
 
   def user_admin?
