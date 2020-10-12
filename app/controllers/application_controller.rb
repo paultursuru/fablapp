@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     else
       @today_bookings = current_user.bookings.is_today.order(start_time: :asc)
       @tomorrow_bookings = current_user.bookings.after_today.order(start_time: :asc)
+      @bookings_count = @today_bookings.count + @tomorrow_bookings.count
     end
   end
 

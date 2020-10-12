@@ -9,8 +9,8 @@
 </div>
 
 <div class="main-page-content">
-  <h3>Online Machines</h3>
-  <div class="machine-cards">
+  <h3 class="margin-devise">Online Machines</h3>
+  <div class="machine-cards margin-devise">
     <% unless @online_machines.empty? %>
       <% @online_machines.each do |machine| %>
         <div class="machine-card">
@@ -21,8 +21,8 @@
       <% end %>
     <% end %>
   </div>
-  <h3>Previously used machines</h3>
-  <div class="machine-cards">
+  <h3 class="margin-devise">Previously used machines</h3>
+  <div class="machine-cards margin-devise">
     <% unless @my_machines.empty? %>
       <% @my_machines.uniq.each do |my_machine| %>
         <div class="machine-card previously-used">

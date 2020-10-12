@@ -1,53 +1,65 @@
-<h1>Upcoming bookings</h1>
-<h3>Today</h3>
-<div class="booking-cards">
-  <% unless @today_bookings.nil? %>
-    <% @today_bookings.each do |booking| %>
-      <div class="booking-card">
-        <div class="booking-times">
-          <p>
-            <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-            <%= booking.end_time.strftime('- %Hh00') %>
-          </p>
-        </div>
-        <div class="booking-machine">
-          <h5>
-            <%= booking.machine.name %>
-          </h5>
-          <h6>booked by <%= booking.user.email %> </h6>
-        </div>
-        <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="booking-card no-booking-card">
-      <div class="booking-machine">
-        <h5>
-          No booking yet !
-        </h5>
-      </div>
+<div class="main-page-name">
+  <h1 class="ifm-paris">Bookings</h1>
+  <h1 class="ifm-paris middle-top-bar">Upcoming bookings <%= ": #{@bookings_count}" if @admin_bookings_count %></h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
     </div>
   <% end %>
 </div>
-<h3>Next days</h3>
-<div class="booking-cards">
-  <% unless @tomorrow_bookings.nil? %>
-    <% @tomorrow_bookings.each do |booking| %>
-      <div class="booking-card">
-        <div class="booking-times">
-          <p>
-            <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-            <%= booking.end_time.strftime('- %Hh00') %>
-          </p>
+
+<div class="main-page-content">
+  <h3 class="margin-devise">Today</h3>
+  <div class="booking-cards margin-devise">
+    <% unless @today_bookings.empty? %>
+      <% @today_bookings.each do |booking| %>
+        <div class="booking-card">
+          <div class="booking-times">
+            <p>
+              <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
+              <%= booking.end_time.strftime('- %Hh00') %>
+            </p>
+          </div>
+          <div class="booking-machine">
+            <h5>
+              <%= booking.machine.name %>
+            </h5>
+            <h6>booked by <%= booking.user.email %> </h6>
+          </div>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
         </div>
+      <% end %>
+    <% else %>
+      <div class="booking-card no-booking-card">
         <div class="booking-machine">
           <h5>
-            <%= booking.machine.name %>
+            No booking yet !
           </h5>
-          <h6>booked by <%= booking.user.email %> </h6>
         </div>
-        <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
       </div>
     <% end %>
-  <% end %>
+  </div>
+  <h3 class="margin-devise">Next days</h3>
+  <div class="booking-cards margin-devise">
+    <% unless @tomorrow_bookings.empty? %>
+      <% @tomorrow_bookings.each do |booking| %>
+        <div class="booking-card">
+          <div class="booking-times">
+            <p>
+              <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
+              <%= booking.end_time.strftime('- %Hh00') %>
+            </p>
+          </div>
+          <div class="booking-machine">
+            <h5>
+              <%= booking.machine.name %>
+            </h5>
+            <h6>booked by <%= booking.user.email %> </h6>
+          </div>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

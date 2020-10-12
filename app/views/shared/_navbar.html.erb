@@ -1,7 +1,7 @@
 <div class="green-side-bar <%= 'signed_in' if user_signed_in? %>">
   <% if user_signed_in? %>
     <% if current_user.admin? %>
-      <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', admin_machines_path %></h1></div>
+      <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', admin_bookings_path %></h1></div>
       <div class="user-actions">
         <h5><%= link_to 'Upcoming bookings', admin_bookings_path%> </h5>
         <div class="quickbook">
@@ -33,7 +33,7 @@
         <h5><%= link_to 'New student account', admin_new_user_path %></h5>
       </div>
     <% else %>
-      <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', admin_machines_path %></h1></div>
+      <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', root_path %></h1></div>
       <h5><%= link_to 'Book a machine', machines_path %></h5>
       <div class="machine-list">
         <% unless @online_machines.nil? %>

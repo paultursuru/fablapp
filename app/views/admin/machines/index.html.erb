@@ -1,9 +1,9 @@
 <div class="main-page-name">
   <h1 class="ifm-paris">Machines</h1>
   <h1 class="ifm-paris middle-top-bar">
-    <%= "#{@online_machines.count if @online_machines} online" %>
+    <%= pluralize(@online_machines.count, "online") if @online_machines %>
     <%= "and" if @online_machines && @offline_machines %>
-    <%= "#{@offline_machines.count if @offline_machines} offline" %>
+    <%= pluralize(@offline_machines.count, "offline") if @offline_machines %>
   </h1>
   <%= link_to new_admin_machine_path do  %>
     <div class="machine-card add-card edit-or-create">
