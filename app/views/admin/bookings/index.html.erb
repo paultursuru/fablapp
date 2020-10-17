@@ -1,6 +1,6 @@
 <div class="main-page-name">
   <h1 class="ifm-paris">Bookings</h1>
-  <h1 class="ifm-paris middle-top-bar">Upcoming bookings <%= ": #{@admin_bookings_count}" if @admin_bookings_count %></h1>
+  <h1 class="ifm-paris middle-top-bar">Upcoming bookings <%= ": #{@admin_bookings_count}" if @admin_bookings_count != 0%></h1>
   <%= link_to :back do %>
     <div class="machine-card add-card">
       <p class="add-edit-logo">⏎</p>

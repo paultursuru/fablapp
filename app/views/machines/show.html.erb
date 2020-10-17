@@ -53,10 +53,11 @@
               <% end %>
             </p>
           <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking] do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
-              <%= f.submit "from #{hour}h to #{hour + 1}h" %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
             <% end %>
           <% end %>
           <% hour += 1 %>
@@ -79,10 +80,11 @@
               <% end %>
             </p>
           <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking] do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
-              <%= f.submit "from #{hour}h to #{hour + 1}h" %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
             <% end %>
           <% end %>
           <% hour += 1 %>
@@ -107,10 +109,11 @@
               <% end %>
             </p>
           <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking] do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
-              <%= f.submit "from #{hour}h to #{hour + 1}h" %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
             <% end %>
           <% end %>
           <% hour += 1 %>
@@ -135,10 +138,11 @@
               <% end %>
             </p>
           <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking] do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
-              <%= f.submit "from #{hour}h to #{hour + 1}h" %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
             <% end %>
           <% end %>
           <% hour += 1 %>

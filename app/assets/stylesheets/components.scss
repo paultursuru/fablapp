@@ -64,7 +64,7 @@
       background: white;
       z-index: 1;
       .machine-description {
-        font-size: 11px;
+        font-size: 17px;
         padding: 20px;
         width: 100%;
         display: flex;
@@ -154,6 +154,7 @@ background: white;
   right: 50px;
   top: 30px;
   width: 400px;
+  z-index: 2;
 }
 
 

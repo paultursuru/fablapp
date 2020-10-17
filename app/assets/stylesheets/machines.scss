@@ -9,7 +9,7 @@
   }
   .machine-card {
     position: relative;
-    height: 120px;
+    height: 200px;
     width: 300px;
     margin: 20px 40px 20px 0;
     padding: 5px 20px;
@@ -28,7 +28,9 @@
     .machine-description {
       text-overflow: ellipsis;
       overflow: hidden;
-      white-space: nowrap;
+      height: 130px;
+      padding: 10px 0;
+      font-size: 15px;
     }
     .machine-actions {
       display: flex;

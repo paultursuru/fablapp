@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   def index
+    redirect_to admin_bookings_path if current_user.admin?
     @bookings = current_user.bookings.in_the_future
   end
 
@@ -37,9 +38,9 @@ class BookingsController < ApplicationController
 
   def destroy
     booking = Booking.find(params[:id])
-    return redirect_to root_path unless booking.user != current_user || !current_user.admin?
+    return redirect_to root_path if booking.user != current_user || !current_user.admin?
     booking.destroy
-    redirect_to bookings_path
+    redirect_to machine_path(booking.machine)
     flash[:notice] = 'booking was succesfully cancelled'
   end
 

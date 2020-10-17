@@ -38,8 +38,9 @@
 }
 .booking-block input {
   border: none;
-  width: 75%;
-  height: 65%;
+  width: max-content;
+  height: max-content;
+  padding: 5px 12px;
   background: lightgreen;
   transition: all 0.2s ease;
   border-radius: 20px;
