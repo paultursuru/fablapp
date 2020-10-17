@@ -26,7 +26,7 @@
     <%#= @machine.description %>
   </p> -->
   <%= calendar number_of_days: 4 do |date| %>
-    <% hour = 10 # opening hour %>
+    <% hour = 9 # opening hour %>
     <% if date.wday == 0 # if it's sunday %>
       <% 12.times do %>
         <div class="booking-block">
@@ -41,7 +41,7 @@
             <p class="not-bookable">past</p>
           <% elsif hour == 13 %>
             <p class="is-closed">closed</p>
-          <% elsif hour > 18 %>
+          <% elsif hour > 19 %>
             <p class="emoji-book">🍻</p>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
@@ -68,8 +68,10 @@
         <div class="booking-block">
           <% if DateTime.now > (date + hour.hours) %>
             <p class="not-bookable">past</p>
-          <% elsif hour == 10 || hour == 13 %>
+          <% elsif hour == 13 %>
             <p class="is-closed">closed</p>
+          <% elsif hour > 19 %>
+            <p class="emoji-book">🍕+🍻</p>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
@@ -97,7 +99,7 @@
             <p class="not-bookable">past</p>
           <% elsif hour == 10 || hour == 13 %>
             <p class="is-closed">closed</p>
-          <% elsif hour > 18 %>
+          <% elsif hour > 19 %>
             <p class="emoji-book">🍕+🍻</p>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
@@ -126,7 +128,7 @@
             <p class="not-bookable">past</p>
           <% elsif hour < 13 %>
             <p class="emoji-book">😴</p>
-          <% elsif hour > 18 %>
+          <% elsif hour > 19 %>
             <p class="emoji-book">🍕+🍻+💃+🍸</p>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>

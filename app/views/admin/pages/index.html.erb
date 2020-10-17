@@ -24,11 +24,11 @@
       <% @users.each do |user| %>
         <div class="machine-card">
           <h5><%= user.email %></h5>
-          <%= link_to 'formations machine', admin_user_formations_path(user) %>
+          <%= link_to 'formations machines', admin_user_formations_path(user), class: 'planning-btn-reverse' %>
           <% unless user.bookings.empty? %>
             <div class="last-machine">
               <h6>Last booking :</h6>
-              <p><%= user.bookings.last.machine.name %> 🗓 <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
+              <p><%= user.bookings.last.machine.name %> 🗓 <%= Time.zone.local_to_utc(user.bookings.last.start_time).strftime('%d/%m') %> </p>
             </div>
           <% end %>
           <div class="machine-actions">

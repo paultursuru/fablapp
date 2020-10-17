@@ -17,8 +17,8 @@
         <div class="booking-card">
           <div class="booking-times">
             <p>
-              <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-              <%= booking.end_time.strftime('- %Hh00') %>
+              <%= Time.zone.local_to_utc(booking.start_time).strftime('🗓 %d/%m | ⏰ %Hh00') %>
+              <%= Time.zone.local_to_utc(booking.end_time).strftime('- %Hh00') %>
             </p>
           </div>
           <div class="booking-machine">
@@ -27,7 +27,7 @@
             </h5>
             <h6>booked by <%= booking.user.email %> </h6>
           </div>
-          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn'  %>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn-reverse'  %>
         </div>
       <% end %>
     <% else %>
@@ -47,8 +47,8 @@
         <div class="booking-card">
           <div class="booking-times">
             <p>
-              <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-              <%= booking.end_time.strftime('- %Hh00') %>
+              <%= Time.zone.local_to_utc(booking.start_time).strftime('🗓 %d/%m | ⏰ %Hh00') %>
+              <%= Time.zone.local_to_utc(booking.end_time).strftime('- %Hh00') %>
             </p>
           </div>
           <div class="booking-machine">
@@ -57,7 +57,7 @@
             </h5>
             <h6>booked by <%= booking.user.email %> </h6>
           </div>
-          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn'  %>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn-reverse'  %>
         </div>
       <% end %>
     <% end %>
