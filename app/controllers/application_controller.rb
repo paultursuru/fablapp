@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   def next_bookings
     @next_bookings = current_user.bookings.in_the_future.order(start_time: :asc)
     if current_user.admin?
-      @admin_today_bookings = Booking.is_today.order(start_time: :asc)
+      @admin_today_bookings = Booking.in_the_future.is_today.order(start_time: :asc)
       @admin_tomorrow_bookings = Booking.after_today.order(start_time: :asc)
       @admin_bookings_count = @admin_today_bookings.count + @admin_tomorrow_bookings.count
     else
-      @today_bookings = current_user.bookings.is_today.order(start_time: :asc)
+      @today_bookings = current_user.bookings.in_the_future.is_today.order(start_time: :asc)
       @tomorrow_bookings = current_user.bookings.after_today.order(start_time: :asc)
       @bookings_count = @today_bookings.count + @tomorrow_bookings.count
     end

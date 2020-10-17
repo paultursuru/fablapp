@@ -6,8 +6,8 @@
       <div class="booking-card">
         <div class="booking-times">
           <p>
-            <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-            <%= booking.end_time.strftime('- %Hh00') %>
+            <%= Time.zone.local_to_utc(booking.start_time).strftime('🗓 %d/%m | ⏰ %Hh00') %>
+            <%= Time.zone.local_to_utc(booking.end_time).strftime('- %Hh00') %>
           </p>
         </div>
         <div class="booking-machine">
@@ -35,8 +35,8 @@
     <div class="booking-card">
       <div class="booking-times">
         <p>
-          <%= booking.start_time.strftime('🗓 %d/%m | ⏰ %Hh00') %>
-          <%= booking.end_time.strftime('- %Hh00') %>
+          <%= Time.zone.local_to_utc(booking.start_time).strftime('🗓 %d/%m | ⏰ %Hh00') %>
+          <%= Time.zone.local_to_utc(booking.end_time).strftime('- %Hh00') %>
         </p>
       </div>
       <div class="booking-machine">

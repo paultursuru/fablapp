@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
         return redirect_to root_path
       end
       unless current_user.bookings.where(start_time: booking.start_time).empty?
-        flash[:alert] = "Looks like you already booked #{current_user.bookings.where(start_time: booking.start_time).last.machine.name} that day at #{booking.start_time.strftime("%H:00")}.. You can't book two machines at the same time."
+        flash[:alert] = "Looks like you already booked #{current_user.bookings.where(start_time: booking.start_time).last.machine.name} that day at #{Time.zone.local_to_utc(booking.start_time).strftime("%H:00")}.. You can't book two machines at the same time."
         return redirect_to root_path
       end
     end

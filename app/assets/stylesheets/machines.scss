@@ -38,6 +38,18 @@
       background: black;
       padding: 5px;
     }
+    .planning-btn-reverse {
+      color: black;
+      background: white;
+      border: solid 1px black;
+      width: max-content;
+      padding: 5px;
+      transition: all 0.2s ease;
+      &:hover {
+        color: white;
+        background: black;
+      }
+    }
     .machine-actions {
       display: flex;
       justify-content: space-between;
