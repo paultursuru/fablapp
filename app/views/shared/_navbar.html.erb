@@ -51,7 +51,7 @@
           <h5><%= link_to 'Upcoming bookings', bookings_path %></h5>
           <div class="next-booking">
             <% unless @next_bookings.nil? %>
-              <% @next_bookings.each do |next_booking| %>
+              <% @next_bookings.first(5).each do |next_booking| %>
                 <div class="upcoming-booking-card">
                   <div class="upcoming-name-date">
                     <p><%= next_booking.machine.name %></p>
