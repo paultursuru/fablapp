@@ -37,6 +37,7 @@
       color: white;
       background: black;
       padding: 5px;
+      text-transform: lowercase;
     }
     .planning-btn-reverse {
       color: black;
@@ -44,6 +45,7 @@
       border: solid 1px black;
       width: max-content;
       padding: 5px;
+      text-transform: lowercase;
       transition: all 0.2s ease;
       &:hover {
         color: white;

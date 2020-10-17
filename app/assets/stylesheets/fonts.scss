@@ -11,6 +11,7 @@
 
 .fakt-pro {
   font-family: 'fakt-pro';
+  text-transform: lowercase;
 }
 .ifm-paris {
   font-family: 'ifm-paris';
@@ -18,6 +19,7 @@
 h1 {
   font-family: 'ifm-paris';
 }
-body, h2, h3, h4, h5, h6, p {
+h2, h3, h4, h5, h6, p {
   font-family: 'fakt-pro', 'Helvetica';
+  text-transform: lowercase;
 }
