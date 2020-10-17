@@ -10,6 +10,10 @@ class BookingsController < ApplicationController
     booking.user = current_user
 
     unless current_user.admin?
+      if current_user.formations.where(machine: booking.machine).count.zero?
+        flash[:alert] = "looks like you haven't passed the formation for this machine..."
+        return redirect_to root_path
+      end
       if current_user.bookings.in_the_future.count > 10
         flash[:alert] = 'already too much bookings'
         return redirect_to root_path
@@ -38,7 +42,10 @@ class BookingsController < ApplicationController
 
   def destroy
     booking = Booking.find(params[:id])
-    return redirect_to root_path if booking.user != current_user || !current_user.admin?
+    unless current_user.admin?
+      return redirect_to root_path if booking.user != current_user
+    end
+
     booking.destroy
     redirect_to machine_path(booking.machine)
     flash[:notice] = 'booking was succesfully cancelled'

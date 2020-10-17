@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_many :machines, through: :bookings
+  has_many :formations, dependent: :destroy
 
   enum role: [:student, :admin]
   after_initialize { self.role ||= :student if self.new_record? }

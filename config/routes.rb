@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     post 'add_user', to: 'pages#add_user', as: 'add_user'
     post 'reboot_password', to: 'pages#reboot_password', as: 'reboot_password'
     get 'users', to: 'pages#index', as: 'users'
+    get 'users/:id/formations', to: 'users#formations', as: 'user_formations'
+    post 'formation_toggle', to: 'formations#formation_toggle', as: 'formation_toggle'
     resources :machines do
       resources :bookings, only: [:create]
     end

@@ -12,7 +12,7 @@
 <div class="main-page-content">
   <h3 class="margin-devise">Today</h3>
   <div class="booking-cards margin-devise">
-    <% unless @today_bookings.nil? %>
+    <% unless @today_bookings.empty? %>
       <% @today_bookings.each do |booking| %>
         <div class="booking-card">
           <div class="booking-times">
@@ -27,7 +27,7 @@
             </h5>
             <h6>booked by <%= booking.user.email %> </h6>
           </div>
-          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn'  %>
         </div>
       <% end %>
     <% else %>
@@ -42,7 +42,7 @@
   </div>
   <h3 class="margin-devise">Next days</h3>
   <div class="booking-cards margin-devise">
-    <% unless @tomorrow_bookings.nil? %>
+    <% unless @tomorrow_bookings.empty? %>
       <% @tomorrow_bookings.each do |booking| %>
         <div class="booking-card">
           <div class="booking-times">
@@ -57,7 +57,7 @@
             </h5>
             <h6>booked by <%= booking.user.email %> </h6>
           </div>
-          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }  %>
+          <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn'  %>
         </div>
       <% end %>
     <% end %>

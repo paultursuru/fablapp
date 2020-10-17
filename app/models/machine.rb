@@ -1,6 +1,7 @@
 class Machine < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :users, through: :bookings
+  has_many :formations, dependent: :destroy
 
   validates :name, :description, presence: true
   validates :description, length: { minimum: 5, maximum: 160 }

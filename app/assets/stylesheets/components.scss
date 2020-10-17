@@ -111,6 +111,9 @@
       .new-user-form {
         padding: 20px;
       }
+      .machine-cards.margin-devise.formations {
+        width: 100%;
+      }
     }
     .machine-forms {
       #new_machine, .simple_form.edit_machine {
@@ -175,6 +178,13 @@ background: white;
   .main-logo {
     width: 100%;
     border-bottom: solid 1px black;
+  }
+  .student-nav {
+    height: 100%;
+    padding: 20px;
+    .not-formed {
+      color: #7e7e7e;
+    }
   }
   .user-actions {
     display: flex;

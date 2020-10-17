@@ -34,7 +34,7 @@
           </div>
           <div class="edit-machine"><%= link_to '🖍', edit_admin_machine_path(machine) %></div>
           <p class="machine-description"><%= machine.description %></p>
-          <p><%= link_to 'see the planning', machine_path(machine)  %></p>
+          <p><%= link_to 'see the planning', machine_path(machine), class: 'planning-btn'  %></p>
         </div>
       <% end %>
     <% end %>
@@ -54,7 +54,7 @@
           </div>
           <div class="edit-machine"><%= link_to '🖍', edit_admin_machine_path(machine) %></div>
           <p class="machine-description"><%= machine.description %></p>
-          <p><%= link_to 'see the planning', machine_path(machine)  %></p>
+          <p><%= link_to 'see the planning', machine_path(machine), class: 'planning-btn'  %></p>
         </div>
       <% end %>
     <% end %>

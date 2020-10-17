@@ -16,7 +16,12 @@
         <div class="machine-card">
           <h5><%= machine.name %></h5>
           <p class="machine-description"><%= machine.description %></p>
-          <p><%= link_to 'book this machine', machine_path(machine)  %></p>
+          <% if current_user.formations.where(machine: machine).count ==1 %>
+            <%# raise %>
+            <p><%= link_to 'see the planning', machine_path(machine), class: 'planning-btn'  %></p>
+          <% else %>
+            <p>You can't book this machine yet, ask when the next class is 🙃</p>
+          <% end %>
         </div>
       <% end %>
     <% end %>

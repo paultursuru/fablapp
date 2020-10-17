@@ -1,18 +1,19 @@
-// Place all the styles related to the Machines controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
 .machine-cards {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   .machine-card.previously-used {
     height: min-content;
+  }
+  .machine-card.formation {
+    height: 120px;
   }
   .machine-card {
     position: relative;
     height: 200px;
     width: 300px;
     margin: 20px 40px 20px 0;
-    padding: 5px 20px;
+    padding: 10px 20px;
     border-left: solid 4px black;
     display: flex;
     flex-direction: column;
@@ -29,12 +30,18 @@
       text-overflow: ellipsis;
       overflow: hidden;
       height: 130px;
-      padding: 10px 0;
+      padding: 5px 0;
       font-size: 15px;
+    }
+    .planning-btn {
+      color: white;
+      background: black;
+      padding: 5px;
     }
     .machine-actions {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       a {
         width: max-content;
       }

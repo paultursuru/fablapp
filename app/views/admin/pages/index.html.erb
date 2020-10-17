@@ -24,6 +24,7 @@
       <% @users.each do |user| %>
         <div class="machine-card">
           <h5><%= user.email %></h5>
+          <%= link_to 'formations machine', admin_user_formations_path(user) %>
           <% unless user.bookings.empty? %>
             <div class="last-machine">
               <h6>Last booking :</h6>
@@ -32,11 +33,11 @@
           <% end %>
           <div class="machine-actions">
             <%= link_to 'reboot password', admin_reboot_password_path(email: user.email),
-            method: :post,
+            method: :post, class: 'planning-btn',
             data: {confirm: "You are about to reboot this student's password?"}  %>
             <p>|</p>
             <%= link_to 'remove user', admin_destroy_user_path(user),
-            method: :delete,
+            method: :delete, class: 'planning-btn',
             data: {confirm: 'are you sure to remove this account?'}  %>
           </div>
         </div>
