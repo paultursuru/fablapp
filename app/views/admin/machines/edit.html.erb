@@ -1,9 +1,20 @@
-<h1><%= @machine.name %>'s edit board </h1>
-<%= simple_form_for @machine, url: admin_machine_path(@machine) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
-  <%= f.submit 'save changes', class: 'add-edit-btn' %>
-  <%= link_to '☠ destroy this machine ☠', admin_machine_path(@machine), data: {confirm: 'You are about to remove this machine from database. Are you sure ?'}, method: :delete, class: 'add-edit-btn destroy-btn' %>
-<% end %>
+<div class="main-page-name">
+  <h1 class="ifm-paris">Machines</h1>
+  <h1 class="ifm-paris middle-top-bar">Edit <%= @machine.name %></h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
+</div>
 
+<div class="main-page-content machine-forms">
+  <%= simple_form_for @machine, url: admin_machine_path(@machine) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
+    <%= f.submit 'save changes', class: 'add-edit-btn' %>
+    <%#= link_to '☠ destroy this machine ☠', admin_machine_path(@machine), data: {confirm: 'You are about to remove this machine from database. Are you sure ?'}, method: :delete, class: 'add-edit-btn destroy-btn' %>
+  <% end %>
+</div>

@@ -1,23 +1,39 @@
-<h1>Machines</h1>
-<h3>Online Machines</h3>
-<div class="machine-cards">
-  <% unless @online_machines.empty? %>
-    <% @online_machines.each do |machine| %>
-      <div class="machine-card">
-        <h5><%= machine.name %></h5>
-        <p class="machine-description"><%= machine.description %></p>
-        <p><%= link_to 'book this machine', machine_path(machine)  %></p>
-      </div>
-    <% end %>
+<div class="main-page-name">
+  <h1 class="ifm-paris">Machines</h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
   <% end %>
 </div>
-<h3>Previously used machines</h3>
-<div class="machine-cards">
-  <% unless @my_machines.empty? %>
-    <% @my_machines.uniq.each do |my_machine| %>
-      <div class="machine-card previously-used">
-        <%= my_machine.name %>
-      </div>
+
+<div class="main-page-content">
+  <h3 class="margin-devise">Online Machines</h3>
+  <div class="machine-cards margin-devise">
+    <% unless @online_machines.empty? %>
+      <% @online_machines.each do |machine| %>
+        <div class="machine-card">
+          <h5><%= machine.name %></h5>
+          <p class="machine-description"><%= machine.description %></p>
+          <% if current_user.formations.where(machine: machine).count ==1 %>
+            <%# raise %>
+            <p><%= link_to 'see the planning', machine_path(machine), class: 'planning-btn'  %></p>
+          <% else %>
+            <p>You can't book this machine yet, ask when the next class is 🙃</p>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <h3 class="margin-devise">Previously used machines</h3>
+  <div class="machine-cards margin-devise">
+    <% unless @my_machines.empty? %>
+      <% @my_machines.uniq.each do |my_machine| %>
+        <div class="machine-card previously-used">
+          <%= my_machine.name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,43 +1,62 @@
-<h1>Machines</h1>
-<h3>Online</h3>
-<div class="machine-cards">
-  <% unless @online_machines.empty? %>
-    <% @online_machines.each do |machine| %>
-      <div class="machine-card">
-        <h5><%= machine.name %></h5>
-        <div class="edit-machine">
-          <%= simple_form_for machine, url: admin_machine_path(machine)do |f| %>
-              <%= f.input :visible, as: :hidden, input_html: {value: 'false'} %>
-              <%= f.submit '🟢', class: 'on-off-btn' %>
-          <% end %>
-        </div>
-        <div class="edit-machine"><%= link_to '🖍', edit_admin_machine_path(machine) %></div>
-        <p class="machine-description"><%= machine.description %></p>
-        <p><%= link_to 'book this machine', machine_path(machine)  %></p>
-      </div>
-    <% end %>
+<div class="main-page-name">
+  <h1 class="ifm-paris">Machines</h1>
+  <h1 class="ifm-paris middle-top-bar">
+    <%= pluralize(@online_machines.count, "online") if @online_machines %>
+    <%= "and" if @online_machines && @offline_machines %>
+    <%= pluralize(@offline_machines.count, "offline") if @offline_machines %>
+  </h1>
+  <%= link_to new_admin_machine_path do  %>
+    <div class="machine-card add-card edit-or-create">
+      <p class="add-edit-logo">➕</p>
+      <p>create a new machine</p>
+    </div>
   <% end %>
-  <div class="machine-card add-card">
-    <%= link_to '➕', new_admin_machine_path, class: 'add-machine' %>
-  </div>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
 </div>
 
-<h3>Offline</h3>
-<div class="machine-cards">
-  <% unless @offline_machines.empty? %>
-    <% @offline_machines.each do |machine| %>
-      <div class="machine-card">
-        <h5><%= machine.name %></h5>
-        <div class="edit-machine">
-          <%= simple_form_for machine, url: admin_machine_path(machine)do |f| %>
-              <%= f.input :visible, as: :hidden, input_html: {value: 'true'} %>
-              <%= f.submit '⚪️', class: 'on-off-btn'  %>
-          <% end %>
+<div class="main-page-content">
+  <h3 class="fakt-pro margin-devise">Online</h3>
+  <div class="machine-cards margin-devise">
+    <% unless @online_machines.empty? %>
+      <% @online_machines.each do |machine| %>
+        <div class="machine-card">
+          <h5><%= machine.name %></h5>
+          <div class="edit-machine">
+            <%= simple_form_for machine, url: admin_machine_path(machine)do |f| %>
+                <%= f.input :visible, as: :hidden, input_html: {value: 'false'} %>
+                <%= f.submit '🟢', class: 'on-off-btn' %>
+            <% end %>
+          </div>
+          <div class="edit-machine"><%= link_to '🖍', edit_admin_machine_path(machine) %></div>
+          <p class="machine-description"><%= machine.description %></p>
+          <p><%= link_to 'see the planning', machine_path(machine), class: 'planning-btn'  %></p>
         </div>
-        <div class="edit-machine"><%= link_to '🖍', edit_admin_machine_path(machine) %></div>
-        <p class="machine-description"><%= machine.description %></p>
-        <p><%= link_to 'book this machine', machine_path(machine)  %></p>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+
+  <h3 class="fakt-pro margin-devise">Offline</h3>
+  <div class="machine-cards margin-devise">
+    <% unless @offline_machines.empty? %>
+      <% @offline_machines.each do |machine| %>
+        <div class="machine-card">
+          <h5><%= machine.name %></h5>
+          <div class="edit-machine">
+            <%= simple_form_for machine, url: admin_machine_path(machine)do |f| %>
+                <%= f.input :visible, as: :hidden, input_html: {value: 'true'} %>
+                <%= f.submit '⚪️', class: 'on-off-btn'  %>
+            <% end %>
+          </div>
+          <div class="edit-machine"><%= link_to '🖍', edit_admin_machine_path(machine) %></div>
+          <p class="machine-description"><%= machine.description %></p>
+          <p><%= link_to 'see the planning', machine_path(machine), class: 'planning-btn'  %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

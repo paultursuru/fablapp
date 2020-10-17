@@ -1,9 +1,19 @@
-<h1>Create a new machine</h1>
+<div class="main-page-name">
+  <h1 class="ifm-paris">Machines</h1>
+  <h1 class="ifm-paris middle-top-bar">Add a new machine</h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
+</div>
 
-<%= simple_form_for @machine, url: admin_machines_path do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
-  <%= f.submit 'add' %>
-<% end %>
-
+<div class="main-page-content machine-forms">
+  <%= simple_form_for @machine, url: admin_machines_path do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :text, label: 'Description (max 160 characters)' %>
+    <%= f.input :visible, as: :radio_buttons, label: 'Visibility', collection: [['online', true],['offline', false]] %>
+    <%= f.submit 'add', class: 'add-edit-btn'  %>
+  <% end %>
+</div>

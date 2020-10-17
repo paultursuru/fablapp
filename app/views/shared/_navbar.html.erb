@@ -1,65 +1,78 @@
 <div class="green-side-bar <%= 'signed_in' if user_signed_in? %>">
   <% if user_signed_in? %>
     <% if current_user.admin? %>
-      <h1><%= link_to 'IFM-lab', admin_machines_path %></h1>
-      <h5><%= link_to 'Upcoming bookings', admin_bookings_path%> </h5>
-      <h5>
-        <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          Book a machine
-        </a>
-      </h5>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body book-machine-card">
-          <div class="machine-list">
-            <% unless @online_machines.nil? %>
-              <% @online_machines.each do |online_machine| %>
+      <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', admin_bookings_path %></h1></div>
+      <div class="user-actions">
+        <h5><%= link_to 'Upcoming bookings', admin_bookings_path%> </h5>
+        <div class="quickbook">
+          <h5>
+            <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Book a machine
+            </a>
+          </h5>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body book-machine-card">
+              <div class="machine-list">
+                <% unless @online_machines.nil? %>
+                  <% @online_machines.each do |online_machine| %>
+                    <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+                  <% end %>
+                <% end %>
+                <% unless @offline_machines.nil? %>
+                  <% @offline_machines.each do |off_machine| %>
+                    <p class="offline-machine"><%= link_to off_machine.name, machine_path(off_machine) %></p>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5><%= link_to 'Machines', admin_machines_path %></h5>
+        <h5><%= link_to 'Add a new machine', new_admin_machine_path %></h5>
+        <h5><%= link_to 'Students', admin_users_path %></h5>
+        <h5><%= link_to 'New student account', admin_new_user_path %></h5>
+      </div>
+    <% else %>
+      <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', root_path %></h1></div>
+      <div class="student-nav">
+        <h5><%= link_to 'Book a machine', machines_path %></h5>
+        <div class="machine-list">
+          <% unless @online_machines.nil? %>
+            <% @online_machines.each do |online_machine| %>
+              <% if current_user.formations.where(machine: online_machine).count ==1 %>
                 <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
+              <% else %>
+                <p class="not-formed"><%= online_machine.name %> </p>
               <% end %>
             <% end %>
-            <% unless @offline_machines.nil? %>
-              <% @offline_machines.each do |off_machine| %>
-                <p class="offline-machine"><%= link_to off_machine.name, machine_path(off_machine) %></p>
+          <% end %>
+        </div>
+        <% unless current_user.bookings.in_the_future.nil? %>
+          <h5><%= link_to 'Upcoming bookings', bookings_path %></h5>
+          <div class="next-booking">
+            <% unless @next_bookings.nil? %>
+              <% @next_bookings.each do |next_booking| %>
+                <div class="upcoming-booking-card">
+                  <div class="upcoming-name-date">
+                    <p><%= next_booking.machine.name %></p>
+                    <p>in <%= distance_of_time_in_words(DateTime.now, next_booking.start_time) %></p>
+                  </div>
+                  <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+                </div>
               <% end %>
             <% end %>
           </div>
-        </div>
-      </div>
-      <h5><%= link_to 'Add a new machine', new_admin_machine_path %></h5>
-      <h5><%= link_to 'Edit machines', admin_machines_path %></h5>
-      <h5><%= link_to 'Students', admin_users_path %></h5>
-      <h5><%= link_to 'Send an invite', new_user_invitation_path %></h5>
-    <% else %>
-      <h1><%= link_to 'IFM-lab', admin_machines_path %></h1>
-      <h5><%= link_to 'Book a machine', machines_path %></h5>
-      <div class="machine-list">
-        <% unless @online_machines.nil? %>
-          <% @online_machines.each do |online_machine| %>
-            <p><%= link_to online_machine.name, machine_path(online_machine) %></p>
-          <% end %>
         <% end %>
       </div>
-      <% unless current_user.bookings.in_the_future.nil? %>
-        <h5><%= link_to 'Upcoming bookings', bookings_path %></h5>
-        <div class="next-booking">
-          <% unless @next_bookings.nil? %>
-            <% @next_bookings.each do |next_booking| %>
-              <div class="upcoming-booking-card">
-                <div class="upcoming-name-date">
-                  <p><%= next_booking.machine.name %></p>
-                  <p>in <%= distance_of_time_in_words(DateTime.now, next_booking.start_time) %></p>
-                </div>
-                <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
     <% end %>
     <div class="nav-element">
       <h6><%= link_to 'my account', edit_user_registration_path %> </h6>
       <h6><%= link_to 'sign out', destroy_user_session_path, method: :delete %></h6>
     </div>
   <% else %>
-    <h1><%= link_to 'IFM-lab', root_path %></h1>
+    <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', root_path %></h1></div>
   <% end %>
+  <div class="nav-element">
+    <%= link_to 'back to IFM-paris', 'https://www.ifmparis.fr/fr/' %>
+  </div>
 </div>

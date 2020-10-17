@@ -1,19 +1,47 @@
-<h1>All students <%= "(#{@users_count})" if @users_count %></h1>
-<div class="machine-cards">
-  <% unless @users.empty? %>
-    <% @users.each do |user| %>
-      <div class="machine-card">
-        <h5><%= user.email %></h5>
-        <% unless user.bookings.empty? %>
-          <h6>Last machine used :</h6>
-          <p><%= user.bookings.last.machine.name %> on <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
-        <% end %>
-        <p class="machine-description">
-          <%= link_to 'remove user', admin_destroy_user_path(user),
-          method: :delete,
-          data: {confirm: 'are you sure to remove this account?'}  %>
-        </p>
-      </div>
-    <% end %>
+<div class="main-page-name">
+  <h1 class="ifm-paris">
+    Students <%= "(#{@users_count})" if @users_count %>
+  </h1>
+  <h1 class="ifm-paris middle-top-bar"></h1>
+  <%= link_to admin_new_user_path do  %>
+    <div class="machine-card add-card edit-or-create">
+      <%#= link_to '➕', admin_new_user_path, class: 'add-machine' %>
+      <p class="add-edit-logo">➕</p>
+      <p>create a new account</p>
+    </div>
   <% end %>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="main-page-content">
+  <div class="machine-cards margin-devise">
+    <% unless @users.empty? %>
+      <% @users.each do |user| %>
+        <div class="machine-card">
+          <h5><%= user.email %></h5>
+          <%= link_to 'formations machine', admin_user_formations_path(user) %>
+          <% unless user.bookings.empty? %>
+            <div class="last-machine">
+              <h6>Last booking :</h6>
+              <p><%= user.bookings.last.machine.name %> 🗓 <%= user.bookings.last.start_time.strftime('%d/%m') %> </p>
+            </div>
+          <% end %>
+          <div class="machine-actions">
+            <%= link_to 'reboot password', admin_reboot_password_path(email: user.email),
+            method: :post, class: 'planning-btn',
+            data: {confirm: "You are about to reboot this student's password?"}  %>
+            <p>|</p>
+            <%= link_to 'remove user', admin_destroy_user_path(user),
+            method: :delete, class: 'planning-btn',
+            data: {confirm: 'are you sure to remove this account?'}  %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

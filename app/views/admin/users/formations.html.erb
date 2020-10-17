@@ -1,0 +1,54 @@
+<div class="main-page-name">
+  <h1 class="ifm-paris">
+    Student's formations
+  </h1>
+  <h1 class="ifm-paris middle-top-bar">
+    <%= @user.email %>
+  </h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="main-page-content">
+  <h3 class="fakt-pro margin-devise">Authorized Machines</h3>
+  <div class="machine-cards margin-devise formations">
+    <% if @machines_ok.empty? %>
+      <div class="machine-card formation">
+        <h5>this student still has no formations</h5>
+      </div>
+    <% else %>
+      <% @machines_ok.each do |machine| %>
+        <div class="machine-card formation">
+          <h5><%= machine.name %></h5>
+          <p><%= @user.formations.where(machine: machine).first.created_at.strftime("Formation passed on %d/%m/%Y")%> </p>
+          <%= link_to 'revoke', admin_formation_toggle_path(user: @user.id, machine: machine.id),
+          method: :post, data: {confirm: "You are about to revoke this student's booking authorization the #{machine.name}"} %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <h3 class="fakt-pro margin-devise">Not authorized Machines</h3>
+  <div class="machine-cards margin-devise formations">
+    <% if @machines_not_ok.empty? %>
+      <div class="machine-card formation">
+        <h5>wow, this student is a pro</h5>
+      </div>
+    <% else %>
+      <% @machines_not_ok.each do |machine| %>
+        <div class="machine-card formation">
+          <h5><%= machine.name %></h5>
+            <%= link_to 'add', admin_formation_toggle_path(user: @user.id, machine: machine.id),
+            method: :post, data: {confirm: "You are about to authorize this student to book the #{machine.name}"} %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+
+  </div>
+</div>

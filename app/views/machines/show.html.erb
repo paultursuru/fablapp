@@ -1,25 +1,153 @@
-<h1>
-  <%= @machine.name %> <%= link_to '🖍', edit_admin_machine_path(@machine) if current_user.admin? %>
-</h1>
-<p>
-  <%= @machine.description %>
-</p>
-<%= calendar number_of_days: 4 do |date| %>
-  <% hour = 10 %>
-  <% 5.times do %>
-    <div class="booking-block">
-      <% if DateTime.now > (date + hour.hours) %>
-        <p>such a long time ago</p>
-      <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
-        <p>already booked <%= 'by you' if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %> </p>
-      <% else %>
-        <%= simple_form_for [@machine, @booking] do |f| %>
-          <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
-          <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 2).hours} %>
-          <%= f.submit "from #{hour}h to #{hour + 2}h" %>
-        <% end %>
-      <% end %>
-      <% hour += 2 %>
+<div class="main-page-name">
+  <h1 class="ifm-paris">
+    <%= @machine.name %>
+  </h1>
+  <p class="machine-description">
+    <%= @machine.description %>
+  </p>
+  <% if current_user.admin? %>
+    <%= link_to edit_admin_machine_path(@machine) do  %>
+      <div class="machine-card add-card edit-or-create">
+        <p class="add-edit-logo">🖍</p>
+        <p>edit this machine</p>
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
     </div>
   <% end %>
-<% end %>
+</div>
+
+<div class="main-page-content">
+  <!-- <p>
+    <%#= @machine.description %>
+  </p> -->
+  <%= calendar number_of_days: 4 do |date| %>
+    <% hour = 10 # opening hour %>
+    <% if date.wday == 0 # if it's sunday %>
+      <% 12.times do %>
+        <div class="booking-block">
+          <p class="emoji-book">🌞</p>
+          <% hour += 1 %>
+        </div>
+      <% end %>
+    <% elsif date.wday == 1 || date.wday == 3 # day is monday or wednesday %>
+      <% 12.times do %>
+        <div class="booking-block">
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour == 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif hour > 18 %>
+            <p class="emoji-book">🍻</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
+          <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+            <p class="you-booked">booked
+              <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
+                by you
+                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+              <% end %>
+            </p>
+          <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
+          <% end %>
+          <% hour += 1 %>
+        </div>
+      <% end %>
+    <% elsif date.wday == 2 || date.wday == 4 # day is tuesday or thursday %>
+      <% 12.times do %>
+        <div class="booking-block">
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour == 10 || hour == 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
+          <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+            <p class="you-booked">booked
+              <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
+                by you
+                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+              <% end %>
+            </p>
+          <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
+          <% end %>
+          <% hour += 1 %>
+        </div>
+      <% end %>
+    <% elsif date.wday == 5 # day is friday %>
+      <% 12.times do %>
+        <div class="booking-block">
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour == 10 || hour == 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif hour > 18 %>
+            <p class="emoji-book">🍕+🍻</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
+          <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+            <p class="you-booked">booked
+              <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
+                by you
+                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+              <% end %>
+            </p>
+          <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
+          <% end %>
+          <% hour += 1 %>
+        </div>
+      <% end %>
+    <% elsif date.wday == 6 # day is saturday %>
+      <% 12.times do %>
+        <div class="booking-block">
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour < 13 %>
+            <p class="emoji-book">😴</p>
+          <% elsif hour > 18 %>
+            <p class="emoji-book">🍕+🍻+💃+🍸</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
+          <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
+            <p class="you-booked">booked
+              <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
+                by you
+                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+              <% end %>
+            </p>
+          <% else %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
+          <% end %>
+          <% hour += 1 %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
