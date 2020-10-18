@@ -79,3 +79,14 @@
 .booking-block p {
   margin: 0;
 }
+
+
+@media (max-width: 800px) {
+
+/* Inline #2 | http://localhost:3000/bookings */
+
+.booking-card p, .booking-card a {
+  font-size: 14px;
+}
+
+}
