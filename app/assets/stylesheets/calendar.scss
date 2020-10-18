@@ -1,11 +1,16 @@
-
+.simple-calendar.admin-calendar .booking-block {
+  height: calc((100vh - 131px - 38px - 24px)/12);
+}
 .simple-calendar {
-  height: 60vh;
+  height: calc(100vh - 131px);
   td.day {
     padding: 0;
   }
+  .table {
+    margin: 0;
+  }
   .booking-block {
-    height: 50px;
+    height: calc((100vh - 131px - 39px)/12);
     p {
       width: 100%;
       height: 100%;
@@ -31,10 +36,3 @@
     }
   }
 }
-
-// table {
-//   height: 100%;
-// }
-
-
-
