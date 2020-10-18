@@ -1,4 +1,4 @@
-<div class="simple-calendar">
+<div class="simple-calendar <%= "admin-calendar" if current_user.admin? %>">
   <% if current_user.admin? %>
     <div class="calendar-heading">
       <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
