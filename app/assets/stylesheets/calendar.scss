@@ -36,3 +36,14 @@
     }
   }
 }
+
+
+@media (max-width: 800px) {
+
+/* Inline #2 | http://localhost:3000/machines/2 */
+
+.simple-calendar p, .simple-calendar input {
+  font-size: 14px;
+}
+
+}

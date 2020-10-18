@@ -31,7 +31,7 @@
     <% unless @my_machines.empty? %>
       <% @my_machines.uniq.each do |my_machine| %>
         <div class="machine-card previously-used">
-          <%= my_machine.name %>
+          <h5><%= my_machine.name %></h5>
         </div>
       <% end %>
     <% end %>

@@ -253,32 +253,75 @@ background: white;
 
 
 @media (max-width: 800px) {
+
+
+.whole-body {
+  height: 100vh;
+}
+
+.green-side-bar .machine-list, .green-side-bar .upcoming-booking-card {
+  padding: 0 0 0 5px;
+}
+
+.green-side-bar .machine-list p, .green-side-bar .upcoming-booking-card p {
+  margin: 5px 0;
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
+.whole-body .middle-body .main-page-name .machine-description {
+  font-size: 12px;
+}
+
+
+
   .green-side-bar {
-    width: 100px;
+    width: 150px;
   }
+  .whole-body .middle-body {
+    margin: 0 0 0 150px;
+  }
+
+
+
+.student-nav h5 {
+  font-size: 15px;
+}
+
+.upcoming-booking-card {
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.green-side-bar .upcoming-booking-card p {
+  text-align: center;
+}
+
+
 
   .green-side-bar .ifm-paris {
     font-size: 30px;
     margin: 0;
   }
 
-  .whole-body .middle-body {
-    margin: 0 0 0 100px;
-  }
+
 
   .whole-body .middle-body .main-page-name {
-    padding-left: 30px;
     height: 87px;
     position: fixed;
     background: white;
+    padding-left: 0;
+    width: calc(100% - 150px);
     .ifm-paris {
       font-size: 28px;
     }
   }
 
   .whole-body .middle-body .main-page-content {
-    padding: 30px 0 0 30px;
     margin-top: 87px;
+    padding: 0;
     h3 {
       font-size: 24px;
     }

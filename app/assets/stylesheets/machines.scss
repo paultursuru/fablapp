@@ -128,5 +128,27 @@
   }
 }
 
+@media (max-width: 800px) {
 
+
+
+.planning-btn {
+  font-size: 14px;
+}
+
+.machine-card p {
+  font-size: 15px;
+}
+
+.machine-cards .machine-card {
+  width: 260px;
+  height: 250px;
+  margin: 20px 20px 20px 0;
+  .machine-description {
+    height: 150px;
+  }
+}
+
+
+}
 
