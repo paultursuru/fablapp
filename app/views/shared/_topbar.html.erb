@@ -2,27 +2,15 @@
   <% if user_signed_in? %>
     <% if current_user.admin? %>
       <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', admin_bookings_path %></h1></div>
-      <div class="user-actions">
-        <h5><%= link_to 'Bookings', admin_bookings_path%> </h5>
-        <div class="quickbook">
-          <h5>
-            <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Machines
-            </a>
-          </h5>
-        </div>
+      <div class="student-nav">
         <h5><%= link_to 'Machines', admin_machines_path %></h5>
-        <h5><%= link_to 'Add a new machine', new_admin_machine_path %></h5>
-        <h5><%= link_to 'Students', admin_users_path %></h5>
-        <h5><%= link_to 'New student account', admin_new_user_path %></h5>
+        <h5><%= link_to 'Bookings', admin_bookings_path %></h5>
       </div>
     <% else %>
       <div class="main-logo"><h1 class="ifm-paris"><%= link_to 'IFM-lab', root_path %></h1></div>
       <div class="student-nav">
         <h5><%= link_to 'Machines', machines_path %></h5>
-        <% unless current_user.bookings.in_the_future.nil? %>
-          <h5><%= link_to 'Bookings', bookings_path %></h5>
-        <% end %>
+        <h5><%= link_to 'Bookings', bookings_path %></h5>
       </div>
     <% end %>
     <div class="nav-element">
