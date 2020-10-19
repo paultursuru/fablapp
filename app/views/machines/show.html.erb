@@ -43,6 +43,13 @@
             <p class="is-closed">closed</p>
           <% elsif hour > 19 %>
             <p class="emoji-book">🍻</p>
+          <% elsif current_user.admin? %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
@@ -72,6 +79,13 @@
             <p class="is-closed">closed</p>
           <% elsif hour > 19 %>
             <p class="emoji-book">🍕+🍻</p>
+          <% elsif current_user.admin? %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
@@ -97,10 +111,17 @@
         <div class="booking-block">
           <% if DateTime.now > (date + hour.hours) %>
             <p class="not-bookable">past</p>
-          <% elsif hour == 10 || hour == 13 %>
+          <% elsif hour == 13 %>
             <p class="is-closed">closed</p>
           <% elsif hour > 19 %>
             <p class="emoji-book">🍕+🍻</p>
+          <% elsif current_user.admin? %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
@@ -130,6 +151,13 @@
             <p class="emoji-book">😴</p>
           <% elsif hour > 19 %>
             <p class="emoji-book">🍕+🍻+💃+🍸</p>
+          <% elsif current_user.admin? %>
+            <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
+            <%= simple_form_for [@machine, @booking] do |f| %>
+              <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
+              <%= f.button :submit, "book it!", confirm: "123" %>
+            <% end %>
           <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
