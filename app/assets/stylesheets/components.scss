@@ -163,6 +163,9 @@ background: white;
 .top-bar {
   display: none;
 }
+.top-bar-machine {
+  display: none;
+}
 .green-side-bar {
   width: 230px;
   height: 100%;
@@ -248,9 +251,6 @@ background: white;
   a {
     color: black;
     width: max-content;
-  }
-  .top-bar-machine {
-    display: none;
   }
 }
 
