@@ -25,6 +25,9 @@
   <!-- <p>
     <%#= @machine.description %>
   </p> -->
+  <div class="top-bar-machine">
+    <h5 class="ifm-paris"><%= @machine.name %></h5>
+  </div>
   <%= calendar number_of_days: 4 do |date| %>
     <% hour = 9 # opening hour %>
     <% if date.wday == 0 # if it's sunday %>

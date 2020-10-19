@@ -249,6 +249,9 @@ background: white;
     color: black;
     width: max-content;
   }
+  .top-bar-machine {
+    display: none;
+  }
 }
 
 
@@ -261,6 +264,9 @@ background: white;
   height: 100vh;
 }
 .top-bar {
+  display: none;
+}
+.top-bar-machine {
   display: none;
 }
 .green-side-bar .machine-list, .green-side-bar .upcoming-booking-card {
@@ -483,7 +489,7 @@ background: white;
 
 
   .whole-body .middle-body .main-page-content {
-    margin-top: 65px;
+    margin-top: 56px;
   }
   .booking-block .new_booking {
     width: 50%;
@@ -510,6 +516,18 @@ background: white;
       color: inherit;
     }
   }
+
+  .top-bar-machine {
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 1px;
+    height: 35px;
+    align-items: center;
+    h5 {
+        margin: 0;
+    }
+  }
+
 
 }
 

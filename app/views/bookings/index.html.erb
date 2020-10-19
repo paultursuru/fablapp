@@ -25,7 +25,6 @@
             <h5>
               <%= booking.machine.name %>
             </h5>
-            <h6>booked by <%= booking.user.email %> </h6>
           </div>
           <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn-reverse'  %>
         </div>
@@ -55,7 +54,6 @@
             <h5>
               <%= booking.machine.name %>
             </h5>
-            <h6>booked by <%= booking.user.email %> </h6>
           </div>
           <%= link_to "Cancel this booking", booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'planning-btn-reverse'  %>
         </div>
