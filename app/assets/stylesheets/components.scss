@@ -160,7 +160,9 @@ background: white;
   z-index: 2;
 }
 
-
+.top-bar {
+  display: none;
+}
 .green-side-bar {
   width: 230px;
   height: 100%;
@@ -252,13 +254,15 @@ background: white;
 
 
 
-@media (max-width: 800px) {
+@media (min-width: 400px) and (max-width: 1000px) {
 
 
 .whole-body {
   height: 100vh;
 }
-
+.top-bar {
+  display: none;
+}
 .green-side-bar .machine-list, .green-side-bar .upcoming-booking-card {
   padding: 0 0 0 5px;
 }
@@ -352,8 +356,162 @@ background: white;
     padding: 0 10px;
   }
 }
-/* application.debug-9461c33e54c6561dae914b45c66b78d159f677d56826613dcea159d3fcbd0bf0.css | http://localhost:3000/assets/application.debug-9461c33e54c6561dae914b45c66b78d159f677d56826613dcea159d3fcbd0bf0.css */
+@media (max-width: 400px) {
 
+.top-bar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  border-bottom: solid 1px black;
+  height: 56px;
+  width: 100%;
+  background: white;
+  z-index: 1;
+}
+
+.main-logo.ifm-paris {
+  font-size: 16px;
+}
+
+.top-bar .main-logo .ifm-paris {
+  font-size: 24px;
+}
+
+.main-logo {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 1px black;
+}
+
+.top-bar .student-nav {
+  display: flex;
+}
+
+.top-bar .student-nav h5 {
+  font-size: 14px;
+  border-right: solid 1px black;
+  margin: 0;
+}
+
+.top-bar .nav-element h6 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.top-bar .nav-element {
+  height: 100%;
+}
+
+.top-bar .nav-element .edit-account {
+  border-bottom: solid 1px black;
+}
+
+  .main-logo {
+
+  }
+  .top-bar .student-nav {
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+  .top-bar .nav-element {
+    /* height: 100%; */
+    width: 25%;
+  }
+  .top-bar .student-nav h5 {
+    /* margin: 0; */
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+  }
+  .top-bar .nav-element h6 {
+    height: 50%;
+  }
+
+
+.top-bar a {
+  width: 100%;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+  .green-side-bar {
+    display: none;
+  }
+  .whole-body .middle-body {
+    /* margin: 0 0 0 150px; */
+    margin: 0 !important;
+  }
+  .whole-body .middle-body .main-page-name {
+    /* height: 87px; */
+    /* width: calc(100% - 150px); */
+    display: none;
+    height: 56px;
+    width: 100% !important;
+  }
+  .whole-body .middle-body .main-page-name .ifm-paris {
+    /* font-size: 28px; */
+  }
+
+.whole-body .middle-body .main-page-name h1 {
+  font-size: 17px;
+}
+
+.whole-body .middle-body .main-page-name a {
+  font-size: 20px;
+}
+
+.machine-card.add-card {
+  font-size: 20px;
+}
+
+.whole-body .middle-body .main-page-name .add-edit-logo {
+  /* font-size: 45px; */
+  font-size: 16px;
+}
+
+
+
+  .whole-body .middle-body .main-page-content {
+    margin-top: 65px;
+  }
+  .booking-block .new_booking {
+    width: 50%;
+  }
+  .booking-block p, .booking-block input {
+    font-size: 10px;
+  }
+  .booking-block input {
+    padding: 5px 3px;
+  }
+
+  .alert.alert-dismissible {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: 300px;
+    z-index: 2;
+    font-size: 12px;
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 8px;
+      color: inherit;
+    }
+  }
+
+}
 
 // TODO
 // .notice, .alert {
