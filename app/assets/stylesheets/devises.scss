@@ -20,4 +20,42 @@ padding-top: 20px;
 }
 #edit_user {
   padding: 20px;
+  width: 500px;
+  font-size: 15px;
+  .form-group.password.optional.user_password {
+    margin: 10px 0;
+  }
+}
+
+
+
+.change-password {
+  border: solid 1px grey;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  p {
+    margin: 0;
+  }
+}
+
+/* Inline #2 | http://localhost:3000/users/edit */
+
+.btn.rectangle-btn {
+  border: solid 1px black;
+  padding: 5px 10px;
+  border-radius: 0;
+  margin-bottom: 10px;
+  transition: all 0.15s ease;
+  &:hover {
+    color: white;
+    background: black;
+  }
+}
+
+
+@media (max-width: 500px) {
+  #edit_user {
+    width: 100vw;
+  }
 }
