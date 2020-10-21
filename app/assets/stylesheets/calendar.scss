@@ -38,12 +38,20 @@
 }
 
 
-@media (max-width: 1000px) {
+@media (min-width: 400px) and (max-width: 1000px) {
 
 /* Inline #2 | http://localhost:3000/machines/2 */
 
 .simple-calendar p, .simple-calendar input {
   font-size: 14px;
 }
+.simple-calendar .booking-block p.emoji-book {
+  font-size: 25px;
+}
 
+}
+@media (max-width: 400px) {
+  .simple-calendar .booking-block p.emoji-book {
+    font-size: 16px;
+  }
 }
