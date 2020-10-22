@@ -55,7 +55,7 @@
             </p>
           <% elsif current_user.admin? %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -64,7 +64,7 @@
             <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -91,7 +91,7 @@
             </p>
           <% elsif current_user.admin? %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -100,7 +100,7 @@
             <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -127,7 +127,7 @@
             </p>
           <% elsif current_user.admin? %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -136,7 +136,7 @@
             <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -158,12 +158,12 @@
             <p class="you-booked">booked
               <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
                 by you
-                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" }, remote: true %>
               <% end %>
             </p>
           <% elsif current_user.admin? %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>
@@ -172,7 +172,7 @@
             <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
-            <%= simple_form_for [@machine, @booking] do |f| %>
+            <%= simple_form_for [@machine, @booking], remote: true do |f| %>
               <%= f.input :start_time, as: :hidden, input_html: { value: date.to_datetime + hour.hours} %>
               <%= f.input :end_time, as: :hidden, input_html: { value: date.to_datetime + (hour + 1).hours} %>
               <%= f.button :submit, "book it!", confirm: "123" %>

@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
     else
       flash[:alert] = 'error during the booking'
     end
-    redirect_to machine_path(params[:machine_id])
+    redirect_to request.referer
   end
 
   def destroy
@@ -47,7 +47,7 @@ class BookingsController < ApplicationController
     end
 
     booking.destroy
-    redirect_to machine_path(booking.machine)
+    redirect_to request.referer
     flash[:notice] = 'booking was succesfully cancelled'
   end
 
