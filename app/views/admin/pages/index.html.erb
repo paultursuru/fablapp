@@ -22,7 +22,7 @@
   <div class="machine-cards margin-devise">
     <% unless @users.empty? %>
       <% @users.each do |user| %>
-        <div class="machine-card">
+        <div class="machine-card" >
           <h5><%= user.email %></h5>
           <%= link_to 'formations machines', admin_user_formations_path(user), class: 'planning-btn-reverse' %>
           <% unless user.bookings.empty? %>
