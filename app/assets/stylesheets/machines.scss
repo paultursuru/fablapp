@@ -128,8 +128,18 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 400px) and (max-width: 1024px) {
 
+.machine-cards .machine-card .edit-machine {
+  max-height: 24px;
+  .on-off-btn, a {
+    font-size: 18px;
+  }
+}
+
+.machine-cards.margin-devise {
+  font-size: 18px;
+}
 
 
 .planning-btn {

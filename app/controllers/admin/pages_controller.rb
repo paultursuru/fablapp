@@ -26,7 +26,11 @@ class Admin::PagesController < ApplicationController
 
   def add_user
     email = params[:email]
-    student = User.new(email: email, password: '123456')
+    if User.where(email: email).blank?
+      student = User.new(email: email, password: '123456')
+    else
+      redirect_to admin_new_user_path, alert: "this user already exists"
+    end
     if student.save!
       redirect_to admin_users_path, notice: "#{email}"
     else
