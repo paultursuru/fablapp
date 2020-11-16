@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :destroy]
 
   namespace :admin do
+    get 'stats', to: 'pages#stats', as: 'stats'
     delete "users/:id", to: "pages#destroy", as: 'destroy_user'
     get 'new_user', to: 'pages#new_user', as: 'new_user'
     post 'add_user', to: 'pages#add_user', as: 'add_user'

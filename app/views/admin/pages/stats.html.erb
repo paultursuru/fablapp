@@ -1,0 +1,43 @@
+<div class="main-page-name">
+  <h1 class="ifm-paris">Stats</h1>
+  <h1 class="ifm-paris middle-top-bar"></h1>
+  <%= link_to :back do %>
+    <div class="machine-card add-card">
+      <p class="add-edit-logo">⏎</p>
+      <p>back</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="main-page-content">
+  <div class="titleline"><h3><%= Date.today.strftime("%B") %></h3></div>
+  <div class="stats-line">
+    <div class="stat-box">
+      <h5>Students count</h5>
+      <h2 class="stat-info"><%= @students_count %></h2>
+    </div>
+    <div class="stat-box">
+      <h5>Formations count</h5>
+      <h2 class="stat-info"><%= @formations_count %></h2>
+    </div>
+    <div class="stat-box">
+      <h5>Bookings count</h5>
+      <h2 class="stat-info"><%= @bookings_count %></h2>
+    </div>
+  </div>
+  <div class="titleline"><h3><%= (Date.today - 1.months).strftime("%B") %></h3></div>
+  <div class="stats-line">
+    <div class="stat-box">
+      <h5>Students count</h5>
+      <h2 class="stat-info"><%= @last_month_students_count %></h2>
+    </div>
+    <div class="stat-box">
+      <h5>Formations count</h5>
+      <h2 class="stat-info"><%= @last_month_formations_count %></h2>
+    </div>
+    <div class="stat-box">
+      <h5>Bookings count</h5>
+      <h2 class="stat-info"><%= @last_month_bookings_count %></h2>
+    </div>
+  </div>
+</div>
