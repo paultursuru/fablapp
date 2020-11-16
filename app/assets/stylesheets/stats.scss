@@ -1,0 +1,25 @@
+.titleline {
+  border-bottom: solid 1px black;
+  h3 {
+    margin: 0;
+  }
+}
+.stats-line {
+  display: flex;
+  height: 38vh;
+  width: 100%;
+  border-bottom: solid 1px black;
+  .stat-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    .stat-info {
+      font-size: 50px;
+    }
+  }
+  .stat-box.ifm-border-right {
+    border-right: solid 1px black;
+  }
+}

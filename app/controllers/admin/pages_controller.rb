@@ -51,6 +51,21 @@ class Admin::PagesController < ApplicationController
     end
   end
 
+  def stats
+    students = User.where(role: 0)
+    formations = Formation.all
+    bookings = Booking.all
+
+    @students_count = students.count
+    @last_month_students_count = students.where("created_at < ?", (Date.today - 1.months)).count
+
+    @formations_count = formations.count
+    @last_month_formation_count = formations.where("created_at < ?", (Date.today - 1.months)).count
+
+    @bookings_count = bookings.count
+    @last_month_booking_count = bookings.where("created_at < ?", (Date.today - 1.months)).count
+  end
+
   def destroy
     user = User.find(params[:id])
     user.destroy
