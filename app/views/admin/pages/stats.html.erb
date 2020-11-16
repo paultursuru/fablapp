@@ -12,32 +12,32 @@
 <div class="main-page-content">
   <div class="titleline"><h3><%= Date.today.strftime("%B") %></h3></div>
   <div class="stats-line">
-    <div class="stat-box">
-      <h5>Students count</h5>
+    <div class="stat-box ifm-border-right">
       <h2 class="stat-info"><%= @students_count %></h2>
+      <h5>Students</h5>
     </div>
-    <div class="stat-box">
-      <h5>Formations count</h5>
+    <div class="stat-box ifm-border-right">
       <h2 class="stat-info"><%= @formations_count %></h2>
+      <h5>Formations</h5>
     </div>
     <div class="stat-box">
-      <h5>Bookings count</h5>
       <h2 class="stat-info"><%= @bookings_count %></h2>
+      <h5>Bookings</h5>
     </div>
   </div>
   <div class="titleline"><h3><%= (Date.today - 1.months).strftime("%B") %></h3></div>
   <div class="stats-line">
-    <div class="stat-box">
-      <h5>Students count</h5>
+    <div class="stat-box ifm-border-right">
       <h2 class="stat-info"><%= @last_month_students_count %></h2>
+      <h5>Students</h5>
     </div>
-    <div class="stat-box">
-      <h5>Formations count</h5>
+    <div class="stat-box ifm-border-right">
       <h2 class="stat-info"><%= @last_month_formations_count %></h2>
+      <h5>Formations</h5>
     </div>
     <div class="stat-box">
-      <h5>Bookings count</h5>
       <h2 class="stat-info"><%= @last_month_bookings_count %></h2>
+      <h5>Bookings</h5>
     </div>
   </div>
 </div>
