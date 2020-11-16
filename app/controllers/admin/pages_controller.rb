@@ -60,10 +60,10 @@ class Admin::PagesController < ApplicationController
     @last_month_students_count = students.where("created_at < ?", (Date.today - 1.months)).count
 
     @formations_count = formations.count
-    @last_month_formation_count = formations.where("created_at < ?", (Date.today - 1.months)).count
+    @last_month_formations_count = formations.where("created_at < ?", (Date.today - 1.months)).count
 
     @bookings_count = bookings.count
-    @last_month_booking_count = bookings.where("created_at < ?", (Date.today - 1.months)).count
+    @last_month_bookings_count = bookings.where("created_at < ?", (Date.today - 1.months)).count
   end
 
   def destroy
