@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       resources :bookings, only: [:create]
     end
     resources :bookings, only: [:index, :destroy]
+    # To do : get 'past bookings' + view + controller -> like bookings index but past ones
+    get 'past_bookings', to: 'bookings#past_bookings', as: 'past_bookings'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :machines_variables, if: :user_signed_in?
 
   def next_bookings
+    # @next_bookings is needed for navbar
     @next_bookings = current_user.bookings.in_the_future.order(start_time: :asc)
     if current_user.admin?
       @admin_today_bookings = Booking.in_the_future.is_today.order(start_time: :asc)
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
       @bookings_count = @today_bookings.count + @tomorrow_bookings.count
     end
   end
+
+  # def past_bookings
+  #   for admins only, its in admin::bookings controller
+  # end
 
   def machines_variables
     @online_machines = Machine.online.order(name: :asc)
