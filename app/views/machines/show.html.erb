@@ -43,7 +43,7 @@
           <% if current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
+                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
@@ -88,7 +88,7 @@
           <% if current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
+                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
@@ -133,7 +133,7 @@
           <% if current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
+                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
@@ -178,7 +178,7 @@
           <% if current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
+                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
