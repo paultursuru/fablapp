@@ -44,7 +44,7 @@
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
                   <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
-                  <%#= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+                  <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
               <p class="not-bookable">not booked</p>
@@ -89,7 +89,7 @@
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
                   <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
-                  <%#= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+                  <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
               <p class="not-bookable">not booked</p>
@@ -134,7 +134,7 @@
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
                   <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
-                  <%#= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+                  <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
               <p class="not-bookable">not booked</p>
@@ -179,7 +179,7 @@
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
                   <!-- by <%#= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %> -->
-                  <%#= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
+                  <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
             <% elsif DateTime.now > (date + hour.hours) %>
               <p class="not-bookable">not booked</p>
