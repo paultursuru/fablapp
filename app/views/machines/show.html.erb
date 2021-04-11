@@ -40,14 +40,18 @@
     <% elsif date.wday == 1 || date.wday == 3 # day is monday or wednesday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if current_user.admin? %>
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour == 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif hour > 19 %>
+            <p class="emoji-book">🍻</p>
+          <% elsif current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
+                  <%= "by you" if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
-            <% elsif DateTime.now > (date + hour.hours) %>
-              <p class="not-bookable">not booked</p>
             <% else %>
               <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
               <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -56,12 +60,8 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif DateTime.now > (date + hour.hours) %>
-            <p class="not-bookable">past</p>
-          <% elsif hour == 13 %>
-            <p class="is-closed">closed</p>
-          <% elsif hour > 19 %>
-            <p class="emoji-book">🍻</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
               <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
@@ -69,8 +69,6 @@
                 <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
               <% end %>
             </p>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
-            <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -85,14 +83,18 @@
     <% elsif date.wday == 2 || date.wday == 4 # day is tuesday or thursday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if current_user.admin? %>
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour == 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif hour > 19 %>
+            <p class="emoji-book">🍻</p>
+          <% elsif current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
+                  <%= "by you" if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
-            <% elsif DateTime.now > (date + hour.hours) %>
-              <p class="not-bookable">not booked</p>
             <% else %>
               <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
               <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -101,12 +103,8 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif DateTime.now > (date + hour.hours) %>
-            <p class="not-bookable">past</p>
-          <% elsif hour == 13 %>
-            <p class="is-closed">closed</p>
-          <% elsif hour > 19 %>
-            <p class="emoji-book">🍕+🍻</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
               <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
@@ -114,8 +112,6 @@
                 <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
               <% end %>
             </p>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
-            <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -130,14 +126,18 @@
     <% elsif date.wday == 5 # day is friday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if current_user.admin? %>
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour == 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif hour > 19 %>
+            <p class="emoji-book">🍻</p>
+          <% elsif current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
+                  <%= "by you" if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
-            <% elsif DateTime.now > (date + hour.hours) %>
-              <p class="not-bookable">not booked</p>
             <% else %>
               <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
               <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -146,12 +146,8 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif DateTime.now > (date + hour.hours) %>
-            <p class="not-bookable">past</p>
-          <% elsif hour == 13 %>
-            <p class="is-closed">closed</p>
-          <% elsif hour > 19 %>
-            <p class="emoji-book">🍕+🍻</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
               <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
@@ -159,8 +155,6 @@
                 <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
               <% end %>
             </p>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
-            <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -175,14 +169,18 @@
     <% elsif date.wday == 6 # day is saturday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if current_user.admin? %>
+          <% if DateTime.now > (date + hour.hours) %>
+            <p class="not-bookable">past</p>
+          <% elsif hour < 13 %>
+            <p class="is-closed">closed</p>
+          <% elsif hour > 19 %>
+            <p class="emoji-book">🍻</p>
+          <% elsif current_user.admin? %>
             <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
                 <p class="you-booked">booked
-                  by <%= @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user.email %>
+                  <%= "by you" if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
                   <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </p>
-            <% elsif DateTime.now > (date + hour.hours) %>
-              <p class="not-bookable">not booked</p>
             <% else %>
               <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
               <%= simple_form_for [@machine, @booking], remote: true do |f| %>
@@ -191,21 +189,15 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif DateTime.now > (date + hour.hours) %>
-            <p class="not-bookable">past</p>
-          <% elsif hour < 13 %>
-            <p class="emoji-book">😴</p>
-          <% elsif hour > 19 %>
-            <p class="emoji-book">🍕+🍻+💃+🍸</p>
+          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+            <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
               <% if @machine.bookings.where(start_time: date.to_datetime + hour.hours).first.user == current_user %>
                 by you
-                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" }, remote: true %>
+                <%= link_to '❌', booking_path(@machine.bookings.where(start_time: date.to_datetime + hour.hours).first), method: :delete, data: { confirm: "Cancel this booking ?" } %>
               <% end %>
             </p>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
-            <p class="not-bookable">too soon</p>
           <% else %>
             <p class="book-hour"><%= "#{hour}h to #{hour + 1}h" %></p>
             <%= simple_form_for [@machine, @booking], remote: true do |f| %>
