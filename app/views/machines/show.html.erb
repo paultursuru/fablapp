@@ -40,7 +40,8 @@
     <% elsif date.wday == 1 || date.wday == 3 # day is monday or wednesday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if DateTime.now > (date + hour.hours) %>
+          <%# raise %>
+          <% if DateTime.now.in_time_zone('Europe/Paris') > ((date).in_time_zone('Europe/Paris') + hour.hours) %>
             <p class="not-bookable">past</p>
           <% elsif hour == 13 %>
             <p class="is-closed">closed</p>
@@ -60,7 +61,7 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+          <% elsif (date.in_time_zone('Europe/Paris') + hour.hours) > (DateTime.now.in_time_zone('Europe/Paris') + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
@@ -83,7 +84,7 @@
     <% elsif date.wday == 2 || date.wday == 4 # day is tuesday or thursday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if DateTime.now > (date + hour.hours) %>
+          <% if DateTime.now.in_time_zone('Europe/Paris') > ((date).in_time_zone('Europe/Paris') + hour.hours) %>
             <p class="not-bookable">past</p>
           <% elsif hour == 13 %>
             <p class="is-closed">closed</p>
@@ -103,7 +104,7 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+          <% elsif (date.in_time_zone('Europe/Paris') + hour.hours) > (DateTime.now.in_time_zone('Europe/Paris') + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
@@ -126,7 +127,7 @@
     <% elsif date.wday == 5 # day is friday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if DateTime.now > (date + hour.hours) %>
+          <% if DateTime.now.in_time_zone('Europe/Paris') > ((date).in_time_zone('Europe/Paris') + hour.hours) %>
             <p class="not-bookable">past</p>
           <% elsif hour == 13 %>
             <p class="is-closed">closed</p>
@@ -146,7 +147,7 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+          <% elsif (date.in_time_zone('Europe/Paris') + hour.hours) > (DateTime.now.in_time_zone('Europe/Paris') + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked
@@ -169,10 +170,10 @@
     <% elsif date.wday == 6 # day is saturday %>
       <% 12.times do %>
         <div class="booking-block">
-          <% if DateTime.now > (date + hour.hours) %>
+          <% if DateTime.now.in_time_zone('Europe/Paris') > ((date).in_time_zone('Europe/Paris') + hour.hours) %>
             <p class="not-bookable">past</p>
-          <% elsif hour < 13 %>
-            <p class="is-closed">closed</p>
+          <%# elsif hour < 13 %>
+            <!-- <p class="is-closed">closed</p> -->
           <% elsif hour > 19 %>
             <p class="emoji-book">🍻</p>
           <% elsif current_user.admin? %>
@@ -189,7 +190,7 @@
                 <%= f.button :submit, "book it!", confirm: "123" %>
               <% end %>
             <% end %>
-          <% elsif (date + hour.hours) > (DateTime.now + 72.hours) %>
+          <% elsif (date.in_time_zone('Europe/Paris') + hour.hours) > (DateTime.now.in_time_zone('Europe/Paris') + 72.hours) %>
             <p class="not-bookable">too soon</p>
           <% elsif @machine.bookings.where(start_time: date.to_datetime + hour.hours).exists? %>
             <p class="you-booked">booked

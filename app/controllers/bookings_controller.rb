@@ -11,11 +11,11 @@ class BookingsController < ApplicationController
 
     unless current_user.admin?
       if current_user.formations.where(machine: booking.machine).count.zero?
-        flash[:alert] = "looks like you haven't passed the formation for this machine..."
+        flash[:alert] = "Looks like you haven't passed the formation for this machine..."
         return redirect_to root_path
       end
       if current_user.bookings.in_the_future.count > 10
-        flash[:alert] = 'already too much bookings'
+        flash[:alert] = 'Already too much bookings'
         return redirect_to root_path
       end
       if booking.start_time + 1.hours != booking.end_time || booking.start_time > (DateTime.now + 74.hours)
@@ -23,7 +23,7 @@ class BookingsController < ApplicationController
         return redirect_to root_path
       end
       unless on_that_day(booking)
-        flash[:alert] = "You already book the #{booking.machine.name} twice this day"
+        flash[:alert] = "You already booked the #{booking.machine.name} twice this day"
         return redirect_to root_path
       end
       unless current_user.bookings.where(start_time: booking.start_time).empty?

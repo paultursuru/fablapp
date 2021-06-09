@@ -57,7 +57,12 @@
                 <div class="upcoming-booking-card">
                   <div class="upcoming-name-date">
                     <p><%= next_booking.machine.name %></p>
-                    <p>in <%= distance_of_time_in_words(DateTime.now, next_booking.start_time) %></p>
+                    <div class="d-flex flex-wrap">
+                      <p class="booking-details"><%= next_booking.start_time.strftime("%b %d") %></p>
+                      <p class="spacer booking-details">|</p>
+                      <p class="booking-details"><%= next_booking.start_time.strftime("%Hh00") %> to <%=next_booking.end_time.strftime("%Hh00") %></p>
+
+                    </div>
                   </div>
                   <%= link_to '❌', booking_path(next_booking), method: :delete, data: { confirm: "Cancel this booking ?" } %>
                 </div>

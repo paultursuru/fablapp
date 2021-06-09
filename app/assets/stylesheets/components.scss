@@ -159,6 +159,11 @@ background: white;
   width: 400px;
   z-index: 2;
 }
+.alert.alert-dismissible.alert-warning {
+  background-color: red;
+  color: white;
+  border: solid 2px black;
+}
 
 .top-bar {
   display: none;
@@ -233,6 +238,12 @@ background: white;
     margin: 5px 0 10px 0;
     background: linear-gradient(0.25turn, lightgreen, #6bd96b);
     border-radius: 0 5px 5px 0;
+    .booking-details {
+      font-size: 10px;
+    }
+    .spacer {
+      margin: 0 10px;
+    }
   }
   .machine-list, .upcoming-booking-card {
     padding: 0 10px 0 20px;
@@ -280,7 +291,9 @@ background: white;
 }
 
 
-
+.spacer {
+  display: none;
+}
 .whole-body .middle-body .main-page-name .machine-description {
   font-size: 12px;
 }
