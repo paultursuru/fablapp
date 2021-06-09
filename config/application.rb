@@ -10,7 +10,7 @@ module Fablapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    config.time_zone = 'Europe/Paris'
+    # config.time_zone = 'Europe/Paris'
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
